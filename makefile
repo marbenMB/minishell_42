@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/05/25 16:19:58 by abellakr         ###   ########.fr        #
+#    Updated: 2022/05/26 13:21:08 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,14 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo  $(BPurple)" done ! "$(Color_Off)
-	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) -o $(NAME)
+	@make -C ./libft
+	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
 clean : 
+	@make clean -C ./libft
 	@rm -f $(OBJ)
 fclean : clean
+	@make fclean -C ./libft
 	@rm -f $(NAME)
 re : fclean all
 .PHONY : clean fclean bonus re

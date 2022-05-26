@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/25 15:05:18 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:27:44 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 # define  UNSET 12 // UNSET  COMMAD
 # define  ENV 13 // ENV  COMMAD
 # define  EXIT 14 // EXIT  COMMAD
-
+//---------------------------------------------- lexer macros for utils
+# define OPERATORS  "<|>&"
 #endif
