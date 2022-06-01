@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 21:30:24 by abellakr          #+#    #+#             */
-/*   Updated: 2021/12/09 01:50:14 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:43:32 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_isascii(int str);
 //to func
 int		ft_toupper(int str);
 int		ft_tolower(int str);
+int	ft_strcmp(char *s1, char *s2);
 
 //str func
 size_t	ft_strlen(const char *str);

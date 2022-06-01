@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/05/26 13:21:08 by abellakr         ###   ########.fr        #
+#    Updated: 2022/05/30 20:05:23 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ CC = cc
 CFlAGS = -Wall -Wextra -Werror
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
-SRC = minishell.c ./lexer/lexer_utils.c
+SRC = minishell.c ./lexer/lexer.c ./lexer/lexer_utils.c
 OBJ = $(SRC:.c=.o)
 
 %.o:%.c $(SRC)

@@ -5,45 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 14:09:56 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/26 14:57:18 by abellakr         ###   ########.fr       */
+/*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
+/*   Updated: 2022/05/30 20:07:19 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// ----------------------------------------- 
-int		count_syntax(char *buffer)
+//------------------------------------------------------------ create  a new node in my list
+t_data	*ft_lstnew_lexer(char *data, int token)
 {
-	int count;
-	int i;
-	
-	i = 0;
-	count = 0;
-	while(buffer[i] != '\0')
+	t_data	*element;
+
+	element = (t_data *)malloc(sizeof(t_data));
+	if (!element)
+		return (0);
+	element->data = data;
+	element->token = token;
+	element ->next = NULL;
+	return (element);
+}
+//------------------------------------ ft_add_back
+void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
+{
+	t_data	*lastnode;
+
+	if (*lst == NULL)
 	{
-		if(check_if_operator(buffer[i]) == 0)
-		{
-			count++;
-			while(check_if_operator(buffer[i]) == 0)
-						i++;
-		}
-		else if(check_if_operator(buffer[i]) == 1)
-			// check_operator_validation();
-		
-		i++;
+		(*lst) = new;
+		return ;
 	}
-	return(0);
+	else if (*lst != NULL)
+	{
+		lastnode = ft_lstlast_lexer(lst);
+		lastnode->next = new;
+	}
 }
-// --------------------------------------------- check if character is an operator or not
-int check_if_operator(char s)
+
+//---------------------------------------- find last node int list 
+t_data	*ft_lstlast_lexer(t_data **lst)
 {
-	if(ft_strchr(OPERATORS, s) != NULL)
-		return(1);
-	return(0);
-}
-// -------------------------------------------- check if syntax of operator is correct or not
-int check_operator_validation(char first_char, char second_char, char third_char)
-{
-	
+	t_data	*backup;
+
+	backup = *lst;
+	if (backup == NULL)
+		return (NULL);
+	while (backup->next != NULL)
+		backup = backup->next;
+	return (backup);
 }

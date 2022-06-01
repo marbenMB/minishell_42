@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/01 09:28:41 by abellakr         ###   ########.fr       */
+/*   Created: 2022/05/30 15:42:21 by abellakr          #+#    #+#             */
+/*   Updated: 2022/05/30 15:43:13 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int main(int ac, char  **av, char **env)
+#include "libft.h"
+int	ft_strcmp(char *s1, char *s2)
 {
-	char *buffer;
-	// t_data	*data;
+	int	i;
 
-	ac = 0;
-	av = NULL;
-	env = NULL;
-	while (1)
+	i = 0;
+	while (s1[i] != 0 || s2[i] != 0)
 	{
-		buffer = readline ("\n \033[0;32m ➜ minishell  :  \033[0;37m");
-		if(ft_strcmp(buffer, "exit") == 0)
-			exit(0);
-		// analyse_buffer(buffer, &data);
-		check_syntax_error(buffer);
+		if (s1[i] == s2[i])
+			i++;
+		else if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 	}
-	free(buffer);
-	return(0);
+	return (0);
 }

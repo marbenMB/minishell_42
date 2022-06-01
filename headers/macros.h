@@ -6,30 +6,34 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/26 14:27:44 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:35:59 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
-//----------------------------------- operators
-# define AND 0 // &&
-# define OR 1 // ||
-# define RIP 2 // <
-# define ROP 3 // >
+//----------------------------------- tokens
+# define RIP 1 // <
+# define ROP 2 // >
+# define PIPE 3 // PIPE | 
 # define DELIMITER  4 // <<
 # define APND 5 // >>
-# define D_QUOTE 6 // ""
-# define S_QUOTE 7 // ''
-# define PIPE 15 // PIPE | 
+# define FiLE_NAME 6 // file name 
+# define word 7
+# define dollar_word 18
+
+
+
+# define SPACE 8
+//---------------------------------------- quotes
+# define D_QUOTE 9 // ""
+# define S_QUOTE 10 // ''
 //--------------------------------------------- build in commands
-# define ECHO 8 // echo command 
-# define CD 9 // cd command 
-# define  PWD 10 // PWD  COMMAD
-# define  EXPORT 11 // EXPORT  COMMAD
-# define  UNSET 12 // UNSET  COMMAD
-# define  ENV 13 // ENV  COMMAD
-# define  EXIT 14 // EXIT  COMMAD
-//---------------------------------------------- lexer macros for utils
-# define OPERATORS  "<|>&"
+# define ECHO 11 // echo command 
+# define CD 12 // cd command 
+# define  PWD 13 // PWD  COMMAD
+# define  EXPORT 14 // EXPORT  COMMAD
+# define  UNSET 15 // UNSET  COMMAD
+# define  ENV 16 // ENV  COMMAD
+# define  EXIT 17 // EXIT  COMMAD
 #endif
