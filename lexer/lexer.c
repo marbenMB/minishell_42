@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/01 09:38:19 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:26:28 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void  check_syntax_error(char *buffer)
 			if(buffer[i] == '<' && buffer[i + 1] == '<' && (ft_special_char(buffer[i + 2]) || ft_is_operator(buffer[i + 2])))
 				printf("parse error");
 			if(buffer[i] == '>' && buffer[i + 1] == '>' && (ft_special_char(buffer[i + 2]) || ft_is_operator(buffer[i + 2])))
+				printf("parse error");
+			if (buffer[i] == '|' && (ft_special_char(buffer[i + 1]) || ft_is_operator(buffer[i + 1])))
 				printf("parse error");
 		}
 		i++;
