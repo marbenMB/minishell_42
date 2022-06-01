@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/01 11:11:00 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:47:26 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,4 @@ void	analyse_buffer(char *buffer, t_data **data);
 void  check_syntax_error(char *buffer);
 int	ft_is_operator(char c);
 int ft_special_char(char c);
-void	check__if_quote_closed(int i, char *buffer, char quote);
-
 #endif
