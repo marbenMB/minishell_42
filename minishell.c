@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/01 09:28:41 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:45:43 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,26 @@ int main(int ac, char  **av, char **env)
 	free(buffer);
 	return(0);
 }
+//  ***************************************************************************** test
+			// if(buffer[i] == '"')
+			// {
+			// 	i++;
+			// 	while(buffer[i] && buffer[i] != '"')
+			// 	{ 
+			// 		buffer++;
+			// 		i++;
+			// 	}
+			// 	if(i == ft_strlen(buffer))
+			// 		write (2, "parse error2", 12);	
+			// }
+			// if(buffer[i] == '\'')
+			// {
+			// 	i++;
+			// 	while(buffer[i] && buffer[i] != '\'')
+			// 	{
+			// 		buffer++;
+			// 		i++;
+			// 	}
+			// 	if(i == ft_strlen(buffer))
+			// 		write (2, "parse error3", 12);	
+			// }

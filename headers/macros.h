@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/30 19:35:59 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:23:24 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@
 # define RIP 1 // <
 # define ROP 2 // >
 # define PIPE 3 // PIPE | 
-# define DELIMITER  4 // <<
+# define LIMITER  4 // <<
 # define APND 5 // >>
 # define FiLE_NAME 6 // file name 
 # define word 7
 # define dollar_word 18
-
-
-
 # define SPACE 8
 //---------------------------------------- quotes
 # define D_QUOTE 9 // ""
