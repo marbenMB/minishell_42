@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/30 20:07:19 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:21:15 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,18 @@ t_data	*ft_lstlast_lexer(t_data **lst)
 	while (backup->next != NULL)
 		backup = backup->next;
 	return (backup);
+}
+//-----------------------------------------------
+int	ft_is_operator(char c)
+{
+	if(ft_strchr("<>|\"\'", c))
+		return 1;
+	return 0;	
+}
+//-------------------------------------------------
+int ft_special_char(char c)
+{
+	if (ft_strchr("\\#`[]!{};()*~&", c))
+		return(1);
+	return 0;	
 }
