@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/05 14:54:17 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/05 17:33:28 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	analyse_buffer(char *buffer, t_data **data)
 {
 	data = NULL;
 	if (check_syntax_error(buffer) == 1)
-		write (2, "parse error", 11);
+		write (2, "syntax error", 12);
 	// save data and tokens in lincked list
 	// check syntac logic 
 	return(0);
@@ -70,15 +70,22 @@ int   check_syntax_error(char *buffer)
 	return (0);
 }
 // //--------------------------------------------- save data and token reconization
-// void	data_reconization(char *buffer, t_data **data)
-// {
-// 	int i;
-// 	int j;
+void	data_reconization(char *buffer, t_data **data)
+{
+	int i;
 
-// 	i = 0;
-// 	j = 0;
-// 	while(buffer[i])
-// 	{
-// 		if(ft_is_operator(buffer[i]))
-// 	}
-// }
+	i = 0;
+	while(buffer[i])
+	{
+		if(!ft_is_operator(buffer[i]))
+		{
+			// check if space or double quote and save data
+		}
+		else if (ft_is_operator(buffer[i]))
+		{
+						
+		}
+		else if(buffer[i] == '\0')
+			break;
+	}
+}

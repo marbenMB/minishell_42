@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/04 19:26:00 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/05 16:57:37 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ int ft_special_char(char c);
 int check_the_operator(char c);
 #endif
 
-// TODO : RETURN STATUS IN SYNTAX ERROR functions, TOKEN OPERTORS BUT NOT SKIP SPACE INSIDE D_QUOTES AND S_QUOTES
-// check pipe caeses with operators in syntax error function 
+// TODO : 
+	// first parte is token operators
+	// token others as words and skip space exepte inside double quotes
+	// check word tokens to 3 partes :
+	// 1 : filename
+	// 2 : dollar word 
+	// 3 : simple word
