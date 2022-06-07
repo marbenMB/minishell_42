@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/05 17:23:31 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/07 04:08:49 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ int ft_special_char(char c)
 {
 	if (ft_strchr("\\#`[]!{};()*~&", c))
 		return(1);
-	return 0;	
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/05 16:57:37 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/07 03:35:54 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int check_syntax_error(char *buffer);
 int	ft_is_operator(char c);
 int ft_special_char(char c);
 int check_the_operator(char c);
+void	data_reconization(char *buffer, t_data **data);
+void	word_inside_quotes(char **buffer, t_data **data, char quote);
+//--------------------------------------------------- test  functions
+void	ft_test(char **buffer);
 #endif
 
 // TODO : 
