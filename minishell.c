@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/07 22:45:47 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:02:45 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main(int ac, char  **av, char **env)
 	while (1)
 	{
 		buffer = readline ("\n \033[0;32m ➜ minishell  :  \033[0;37m");
+		add_history(buffer);
 		if(ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		data = analyse_buffer(buffer);

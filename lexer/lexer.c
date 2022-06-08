@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/08 06:12:39 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:47:04 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	data_reconization(char *buffer, t_data **data)
 		{
 			// alloc word inside quotes and not to scape space
 			word_inside_quotes(&buffer, data, *buffer);
-			printf("buffer fin wasl : %s\n",buffer);
-		printf("------------------------------------------\n");
 		}
 		buffer++;
 		// else if(ft_is_operator(*buffer) == 1)
@@ -90,19 +88,14 @@ void	data_reconization(char *buffer, t_data **data)
 		// else 
 			// alloc for word witout space
 	}
-	
-
 }
 //------------------------------------------ word data inside quotes
 void	word_inside_quotes(char **buffer, t_data **data, char quote)
 {
 	int i;
-	static int j;
 	char *str;
 
-	i = 0;
-	// j = 1;
-	data = NULL;
+	i = 2;
 	str = *buffer;
 	(*buffer)++;
 	while(**buffer != quote)
@@ -111,12 +104,10 @@ void	word_inside_quotes(char **buffer, t_data **data, char quote)
 		(*buffer)++;
 	}
 	(*buffer)++;
-	i++;
-	str = ft_substr(str, 0, ++i);
-	printf("lmra no : %d -> dakchi  li jbd lina : %s\n", j, str);
-	printf("------------------------------------------\n");
-	j++;
-
+	str = ft_substr(str, 0, i);
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
+	free(str);
+	
 }
 //------------------------------------------------------ test moving forward string with adress
 	// buffer++;
