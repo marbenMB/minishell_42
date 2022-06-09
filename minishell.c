@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/08 21:02:45 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:46:55 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int main(int ac, char  **av, char **env)
 		if(ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		data = analyse_buffer(buffer);
+		free(buffer);
 	}
-	free(buffer);
 	return(0);
 }
-// need to handel $ and ? case in spaecial char inside in outside "" 
-// add history 

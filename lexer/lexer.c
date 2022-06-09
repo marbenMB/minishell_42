@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 00:47:04 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 08:29:31 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@ t_data	*analyse_buffer(char *buffer)
 	t_data *data;
 
 	data = NULL;
-	if (check_syntax_error(buffer) == 1)	// check syntax error
+	if (check_syntax_error(buffer) == 1)
+	{
+		// check syntax error
 		write (2, "syntax error", 12);
+		return(NULL);
+	}		
 	data_reconization(buffer, &data);	// save data and tokens in lincked list
-	// check syntac logic 
+	// check error logic
+	while(data)
+	{
+		printf("%s , %d\n", data->str, data->token);
+		data = data->next;
+	}
 	return(0);
 }
 // --------------------------------------------------------------------------- check syntax error 
@@ -81,12 +90,15 @@ void	data_reconization(char *buffer, t_data **data)
 			// alloc word inside quotes and not to scape space
 			word_inside_quotes(&buffer, data, *buffer);
 		}
-		buffer++;
-		// else if(ft_is_operator(*buffer) == 1)
-		// 	// check wish type of operartors and alloc for it 
-		// else if (*buffer == ' ')
-		// else 
+		else if(ft_is_operator(*buffer) == 1)
+		{
+			operator_type(&buffer, data);
+			// check wish type of operartors and alloc for it 
+		}
 			// alloc for word witout space
+		else
+			word_token(&buffer, data);
+		buffer++;
 	}
 }
 //------------------------------------------ word data inside quotes
@@ -107,12 +119,53 @@ void	word_inside_quotes(char **buffer, t_data **data, char quote)
 	str = ft_substr(str, 0, i);
 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
 	free(str);
-	
 }
-//------------------------------------------------------ test moving forward string with adress
-	// buffer++;
-	// while(*buffer != 34)
-	// 	buffer++;
-	// buffer++;
-	// printf("\n-----------------------\n");
-	// printf("%s", buffer);
+//-------------------------------------------------- check operator type and save operator and data
+void	operator_type(char **buffer, t_data **data)
+{
+	if (**buffer == '|')
+	{
+		ft_lstadd_back_lexer(data, ft_lstnew_lexer("|", PIPE));
+		(*buffer)++;
+	}
+	else if(**buffer == '<' && *(*buffer + 1) == '<')
+	{
+		ft_lstadd_back_lexer(data, ft_lstnew_lexer("<<", LIMITER));
+		(*buffer) += 2;
+		
+	}
+	else if (**buffer == '>' && *(*buffer + 1) == '>')
+	{
+		ft_lstadd_back_lexer(data, ft_lstnew_lexer(">>", APND));
+		(*buffer) += 2;
+	}
+	else if(**buffer == '<' && *(*buffer + 1) != '<')
+	{
+		ft_lstadd_back_lexer(data, ft_lstnew_lexer("<", RIP));
+		(*buffer)++;
+	}
+	else if(**buffer == '>' && *(*buffer + 1) != '>')
+	{
+		ft_lstadd_back_lexer(data, ft_lstnew_lexer(">", ROP));
+		(*buffer)++;
+	}
+}
+//----------------------------------------------------------- woed
+void 	word_token(char **buffer, t_data **data)
+{
+	int i;
+	char *str;
+	
+	i = 0;
+	str = *buffer;
+	while(**buffer != '\0')
+	{
+		if(**buffer == '"' || **buffer == '\'' || **buffer == ' ' || ft_is_operator(**buffer) == 1)
+			break;
+		i++;
+		(*buffer)++;
+	}
+	str = ft_substr(str, 0, i);
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
+	free(str);
+}

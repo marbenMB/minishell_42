@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/07 22:46:29 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:54:58 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ int check_the_operator(char c);
 t_data	*analyse_buffer(char *buffer);
 void	data_reconization(char *buffer, t_data **data);
 void	word_inside_quotes(char **buffer, t_data **data, char quote);
-//--------------------------------------------------- test  functions
-void	ft_test(char **buffer);
+void	operator_type(char **buffer, t_data **data);
+void 	word_token(char **buffer, t_data **data);
 #endif
 
 // TODO : 
-	// first parte is token operators
-	// token others as words and skip space exepte inside double quotes
-	// check word tokens to 3 partes :
-	// 1 : filename
-	// 2 : dollar word 
-	// 3 : simple word
+// first parte is token operators
+// token others as words and skip space exepte inside double quotes
+// check word tokens to 3 partes :
+// 1 : filename
+// 2 : dollar word 
+// 3 : simple word
+//---------------------------------------
+// need to handel $ and ? case in spaecial char inside in outside "" 
+// add history 

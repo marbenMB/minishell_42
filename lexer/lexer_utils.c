@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/07 04:08:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 08:12:58 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*ft_lstnew_lexer(char *data, int token)
 	element = (t_data *)malloc(sizeof(t_data));
 	if (!element)
 		return (0);
-	element->data = data;
+	element->str = ft_strdup(data);
 	element->token = token;
 	element ->next = NULL;
 	return (element);
@@ -35,11 +35,8 @@ void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
 		(*lst) = new;
 		return ;
 	}
-	else if (*lst != NULL)
-	{
-		lastnode = ft_lstlast_lexer(lst);
-		lastnode->next = new;
-	}
+	lastnode = ft_lstlast_lexer(lst);
+	lastnode->next = new;
 }
 
 //---------------------------------------- find last node int list 
