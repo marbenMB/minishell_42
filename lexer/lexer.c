@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 08:29:31 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/09 23:42:15 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_data	*analyse_buffer(char *buffer)
 	t_data *data;
 
 	data = NULL;
+	buffer = ft_strtrim(buffer, " ");
 	if (check_syntax_error(buffer) == 1)
 	{
 		// check syntax error
@@ -28,7 +29,7 @@ t_data	*analyse_buffer(char *buffer)
 	// check error logic
 	while(data)
 	{
-		printf("%s , %d\n", data->str, data->token);
+		printf("data:%10s	|token:%8d\n", data->str, data->token);
 		data = data->next;
 	}
 	return(0);
@@ -43,7 +44,6 @@ int   check_syntax_error(char *buffer)
 	i = 0;
 	d_quotes = 0;
 	s_quotes = 0;
-	buffer = ft_strtrim(buffer, " ");
 	if(buffer[i] == '|')
 		return (1);
 	while(buffer[i])
@@ -85,7 +85,9 @@ void	data_reconization(char *buffer, t_data **data)
 {
 	while(*buffer)
 	{
-		if(*buffer == 34 || *buffer == 39)
+		if(*buffer == ' ')
+			buffer++;
+		else if(*buffer == 34 || *buffer == 39)
 		{
 			// alloc word inside quotes and not to scape space
 			word_inside_quotes(&buffer, data, *buffer);
@@ -95,10 +97,9 @@ void	data_reconization(char *buffer, t_data **data)
 			operator_type(&buffer, data);
 			// check wish type of operartors and alloc for it 
 		}
-			// alloc for word witout space
 		else
+			// alloc for word witout space
 			word_token(&buffer, data);
-		buffer++;
 	}
 }
 //------------------------------------------ word data inside quotes
@@ -160,10 +161,10 @@ void 	word_token(char **buffer, t_data **data)
 	str = *buffer;
 	while(**buffer != '\0')
 	{
-		if(**buffer == '"' || **buffer == '\'' || **buffer == ' ' || ft_is_operator(**buffer) == 1)
-			break;
 		i++;
 		(*buffer)++;
+		if((**buffer == '"') || (**buffer == '\'') || (**buffer == ' ') || (ft_is_operator(**buffer) == 1))
+			break;
 	}
 	str = ft_substr(str, 0, i);
 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
