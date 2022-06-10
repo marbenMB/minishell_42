@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 23:42:15 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/10 03:55:44 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 t_data	*analyse_buffer(char *buffer)
 {
 	t_data *data;
+	char *str;
 
 	data = NULL;
-	buffer = ft_strtrim(buffer, " ");
+	str = buffer;
+	free(buffer);
+	buffer = ft_strtrim(str, " ");
 	if (check_syntax_error(buffer) == 1)
 	{
 		// check syntax error
@@ -27,12 +30,12 @@ t_data	*analyse_buffer(char *buffer)
 	}		
 	data_reconization(buffer, &data);	// save data and tokens in lincked list
 	// check error logic
-	while(data)
-	{
-		printf("data:%10s	|token:%8d\n", data->str, data->token);
-		data = data->next;
-	}
-	return(0);
+	// while(data)
+	// {
+	// 	printf("data:%10s	| token:%8d\n", data->str, data->token);
+	// 	data = data->next;
+	// }
+	return(data);
 }
 // --------------------------------------------------------------------------- check syntax error 
 int   check_syntax_error(char *buffer)
@@ -88,15 +91,11 @@ void	data_reconization(char *buffer, t_data **data)
 		if(*buffer == ' ')
 			buffer++;
 		else if(*buffer == 34 || *buffer == 39)
-		{
 			// alloc word inside quotes and not to scape space
 			word_inside_quotes(&buffer, data, *buffer);
-		}
 		else if(ft_is_operator(*buffer) == 1)
-		{
 			operator_type(&buffer, data);
 			// check wish type of operartors and alloc for it 
-		}
 		else
 			// alloc for word witout space
 			word_token(&buffer, data);

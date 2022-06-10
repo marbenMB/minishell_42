@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 02:54:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/10 03:58:34 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,8 @@ void 	word_token(char **buffer, t_data **data);
 //---------------------------------------
 // need to handel $ and ? case in spaecial char inside in outside "" 
 // add history 
+//----------------------------------
+// norme some functions and hande
+// check error logic function
+// moraja3a ldakchi li khsna ndiro 
+// nchofo blan dial expander

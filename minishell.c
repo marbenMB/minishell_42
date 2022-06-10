@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 02:46:55 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/10 02:48:31 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int ac, char  **av, char **env)
 {
 	char *buffer;
 	t_data	*data;
+	t_data *back_up;
 
 	ac = 0;
 	av = NULL;
@@ -27,7 +28,17 @@ int main(int ac, char  **av, char **env)
 		if(ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		data = analyse_buffer(buffer);
-		free(buffer);
+		if (data)
+		{
+			back_up = data;
+			while (data)
+			{
+				back_up = (data)->next;
+				free(data->str);
+				free(data);
+				data = back_up;
+			}
+		}
 	}
 	return(0);
 }
