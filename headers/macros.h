@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/10 03:59:30 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:04:16 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 # define RIP 1 // <
 # define ROP 2 // >
 # define PIPE 3 // PIPE | 
-# define LIMITER  4 // <<
+# define HEREDOC  4 // <<
 # define APND 5 // >>
-# define word 7
-# define FiLE_NAME 6 // file name 
-# define dollar_word 18
+# define CMD_WORD 6 // COMMAND WORD
 // //--------------------------------------------- build in commands
 // # define ECHO 11 // echo command 
 // # define CD 12 // cd command 

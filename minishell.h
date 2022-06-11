@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/10 03:58:34 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 08:52:49 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int	ft_is_operator(char c);
 int ft_special_char(char c);
 int check_the_operator(char c);
 t_data	*analyse_buffer(char *buffer);
+//---------------------------------- token and save data
 void	data_reconization(char *buffer, t_data **data);
-void	word_inside_quotes(char **buffer, t_data **data, char quote);
 void	operator_type(char **buffer, t_data **data);
 void 	word_token(char **buffer, t_data **data);
+void	pipe_data(char **buffer, t_data **data);
+void	save_operator_data(char **buffer, t_data **data, int flag);
 #endif
 
 // TODO : 

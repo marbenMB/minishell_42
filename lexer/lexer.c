@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 03:10:20 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:04:30 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,14 @@ t_data	*analyse_buffer(char *buffer)
 	buffer = ft_strtrim(str, " ");
 	if (check_syntax_error(buffer) == 1)
 	{
-		// check syntax error
 		write (2, "syntax error", 12);
 		return(NULL);
 	}		
 	data_reconization(buffer, &data);	// save data and tokens in lincked list
-	// check error logic
-	while(1)
+	while(data)
 	{
-		printf("data:%10s	| token:%8d\n", data->str, data->token);
-		if (data->next == NULL)
-			break;
-		else if(data->next != NULL)
-			data = data->next;
+		printf("data: (%s)	      |	token: (%5d)\n", data->str, data->token);
+		data = data->next;
 	}
 	return(data);
 }
@@ -86,91 +81,92 @@ int   check_syntax_error(char *buffer)
 		return (1);
 	return (0);
 }
-//***************************************************************************************************************** logic 1 dial lexer
-//--------------------------------------------- save data and token reconization
-// void	data_reconization(char *buffer, t_data **data)
-// {
-// 	while(*buffer)
-// 	{
-// 		if(*buffer == ' ')
-// 			buffer++;
-// 		else if(*buffer == 34 || *buffer == 39)
-// 			// alloc word inside quotes and not to scape space
-// 			word_inside_quotes(&buffer, data, *buffer);
-// 		else if(ft_is_operator(*buffer) == 1)
-// 			// check wish type of operartors and alloc for it 
-// 			operator_type(&buffer, data);
-// 		else
-// 			// alloc for word witout space
-// 			word_token(&buffer, data);
-// 	}
-// }
-// //------------------------------------------ word data inside quotes
-// void	word_inside_quotes(char **buffer, t_data **data, char quote)
-// {
-// 	int i;
-// 	char *str;
 
-// 	i = 2;
-// 	str = *buffer;
-// 	(*buffer)++;
-// 	while(**buffer != quote)
-// 	{
-// 		i++;
-// 		(*buffer)++;
-// 	}
-// 	(*buffer)++;
-// 	str = ft_substr(str, 0, i);
-// 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
-// 	free(str);
-// }
-// //-------------------------------------------------- check operator type and save operator and data
-// void	operator_type(char **buffer, t_data **data)
-// {
-// 	if (**buffer == '|')
-// 	{
-// 		ft_lstadd_back_lexer(data, ft_lstnew_lexer("|", PIPE));
-// 		(*buffer)++;
-// 	}
-// 	else if(**buffer == '<' && *(*buffer + 1) == '<')
-// 	{
-// 		ft_lstadd_back_lexer(data, ft_lstnew_lexer("<<", LIMITER));
-// 		(*buffer) += 2;
-		
-// 	}
-// 	else if (**buffer == '>' && *(*buffer + 1) == '>')
-// 	{
-// 		ft_lstadd_back_lexer(data, ft_lstnew_lexer(">>", APND));
-// 		(*buffer) += 2;
-// 	}
-// 	else if(**buffer == '<' && *(*buffer + 1) != '<')
-// 	{
-// 		ft_lstadd_back_lexer(data, ft_lstnew_lexer("<", RIP));
-// 		(*buffer)++;
-// 	}
-// 	else if(**buffer == '>' && *(*buffer + 1) != '>')
-// 	{
-// 		ft_lstadd_back_lexer(data, ft_lstnew_lexer(">", ROP));
-// 		(*buffer)++;
-// 	}
-// }
-// //----------------------------------------------------------- woed
-// void 	word_token(char **buffer, t_data **data)
-// {
-// 	int i;
-// 	char *str;
+// --------------------------------------------- save data and token reconization
+void	data_reconization(char *buffer, t_data **data)
+{
+	while(*buffer)
+	{
+		if(ft_is_operator(*buffer) == 1)
+			operator_type(&buffer, data);
+		else if(ft_is_operator(*buffer) == 0)
+			word_token(&buffer, data);
+	}
+}
+//----------------------------------------------------------- woed
+void 	word_token(char **buffer, t_data **data)
+{
+	int i;
+	char *str1;
+	char *str2;
 	
-// 	i = 0;
-// 	str = *buffer;
-// 	while(**buffer != '\0')
-// 	{
-// 		i++;
-// 		(*buffer)++;
-// 		if((**buffer == '"') || (**buffer == '\'') || (**buffer == ' ') || (ft_is_operator(**buffer) == 1))
-// 			break;
-// 	}
-// 	str = ft_substr(str, 0, i);
-// 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str, 7));
-// 	free(str);
-// }
-// ******************************************************************************************************************************************* 
+	i = 0;
+	str1 = *buffer;
+	while(**buffer != '\0')
+	{
+		i++;
+		(*buffer)++;
+		if(ft_is_operator(**buffer) == 1)
+			break;
+	}
+	str1 = ft_substr(str1, 0, i);
+	str2 = ft_strtrim(str1, " ");
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, CMD_WORD));
+	free(str1);
+	free(str2);
+}
+//-------------------------------------------------- check operator type and save operator and data
+void	operator_type(char **buffer, t_data **data)
+{
+	// handle pipe
+	if (**buffer == '|')
+		pipe_data(buffer, data);
+	// handle herdoc
+	else if(**buffer == '<' && *(*buffer + 1) == '<')
+		save_operator_data(buffer, data, HEREDOC);
+	// handle appand
+	else if (**buffer == '>' && *(*buffer + 1) == '>')
+		save_operator_data(buffer, data, APND);
+	// handle rip
+	else if(**buffer == '<' && *(*buffer + 1) != '<')
+		save_operator_data(buffer, data, RIP);
+		// handle rop
+	else if(**buffer == '>' && *(*buffer + 1) != '>')
+		save_operator_data(buffer, data, ROP);
+}
+//------------------------------------------------------------ store pipe
+void	pipe_data(char **buffer, t_data **data)
+{
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer("|", PIPE));
+	(*buffer)++;
+}
+//--------------------------------------------------------- heredoc_data
+void	save_operator_data(char **buffer, t_data **data, int flag)
+{
+	int i;
+	char *str1;
+	char *str2;
+	i = 0;
+	if(flag == HEREDOC || flag == APND)
+		(*buffer) += 2;
+	else if(flag == RIP || flag == ROP)
+		(*buffer)++;
+	while(**buffer == ' ')
+		(*buffer)++;
+	str1 = *buffer;
+	while(**buffer != '\0')
+	{
+		i++;
+		(*buffer)++;
+		if(ft_is_operator(**buffer) == 1 || **buffer == ' ')
+			break;
+	}
+	while(**buffer == ' ')
+		(*buffer)++;
+	str1 = ft_substr(str1, 0, i);
+	str2 = ft_strtrim(str1, " ");
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, flag));
+	free(str1);
+	free(str2);
+}
+// echo -n "hello" | grep p << filename
