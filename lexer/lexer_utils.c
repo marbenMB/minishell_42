@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 09:40:20 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:13:09 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_data	*ft_lstnew_lexer(char *data, int token)
 	element->str = ft_strdup(data);
 	element->token = token;
 	element->next = NULL;
+	element->prev = NULL;
 	return (element);
 }
 //------------------------------------ ft_add_back
@@ -36,7 +37,7 @@ void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
 		return ;
 	}
 	lastnode = ft_lstlast_lexer(lst);
-	// new->prev = lastnode;
+	new->prev = lastnode;
 	lastnode->next = new;
 }
 
