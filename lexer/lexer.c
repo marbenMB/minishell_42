@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 10:04:30 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:47:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_data	*analyse_buffer(char *buffer)
 {
 	t_data *data;
 	char *str;
+	t_data *back_up;
 
 	data = NULL;
 	str = buffer;
@@ -27,7 +28,22 @@ t_data	*analyse_buffer(char *buffer)
 		write (2, "syntax error", 12);
 		return(NULL);
 	}		
-	data_reconization(buffer, &data);	// save data and tokens in lincked list
+	if(data_reconization(buffer, &data) == 1)
+	{
+		if (data)
+		{
+			back_up = data;
+			while (data)
+			{
+				back_up = (data)->next;
+				free(data->str);
+				free(data);
+				data = back_up;
+			}
+		}
+		write (2, "syntax error", 12);
+		return(NULL);
+	}
 	while(data)
 	{
 		printf("data: (%s)	      |	token: (%5d)\n", data->str, data->token);
@@ -83,18 +99,25 @@ int   check_syntax_error(char *buffer)
 }
 
 // --------------------------------------------- save data and token reconization
-void	data_reconization(char *buffer, t_data **data)
+int	data_reconization(char *buffer, t_data **data)
 {
 	while(*buffer)
 	{
 		if(ft_is_operator(*buffer) == 1)
-			operator_type(&buffer, data);
+		{
+			if (operator_type(&buffer, data) == 1)
+				return (1);
+		}
 		else if(ft_is_operator(*buffer) == 0)
-			word_token(&buffer, data);
+		{
+			if(word_token(&buffer, data) == 1)
+				return (1);
+		}
 	}
+	return (0);
 }
 //----------------------------------------------------------- woed
-void 	word_token(char **buffer, t_data **data)
+int 	word_token(char **buffer, t_data **data)
 {
 	int i;
 	char *str1;
@@ -114,34 +137,40 @@ void 	word_token(char **buffer, t_data **data)
 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, CMD_WORD));
 	free(str1);
 	free(str2);
+	return (0);
 }
 //-------------------------------------------------- check operator type and save operator and data
-void	operator_type(char **buffer, t_data **data)
+int	operator_type(char **buffer, t_data **data)
 {
 	// handle pipe
 	if (**buffer == '|')
-		pipe_data(buffer, data);
-	// handle herdoc
+	{
+		if (pipe_data(buffer, data) == 1)
+			return (1);
+	}
 	else if(**buffer == '<' && *(*buffer + 1) == '<')
 		save_operator_data(buffer, data, HEREDOC);
-	// handle appand
 	else if (**buffer == '>' && *(*buffer + 1) == '>')
 		save_operator_data(buffer, data, APND);
-	// handle rip
 	else if(**buffer == '<' && *(*buffer + 1) != '<')
 		save_operator_data(buffer, data, RIP);
-		// handle rop
 	else if(**buffer == '>' && *(*buffer + 1) != '>')
 		save_operator_data(buffer, data, ROP);
+	return (0);
 }
 //------------------------------------------------------------ store pipe
-void	pipe_data(char **buffer, t_data **data)
+int	pipe_data(char **buffer, t_data **data)
 {
 	ft_lstadd_back_lexer(data, ft_lstnew_lexer("|", PIPE));
 	(*buffer)++;
+	while(**buffer == ' ')
+		(*buffer)++;
+	if(**buffer == '|')
+		return (1);
+	return (0);
 }
-//--------------------------------------------------------- heredoc_data
-void	save_operator_data(char **buffer, t_data **data, int flag)
+//--------------------------------------------------------- other operators data
+int	save_operator_data(char **buffer, t_data **data, int flag)
 {
 	int i;
 	char *str1;
@@ -168,5 +197,7 @@ void	save_operator_data(char **buffer, t_data **data, int flag)
 	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, flag));
 	free(str1);
 	free(str2);
+	return (0);
 }
 // echo -n "hello" | grep p << filename
+// leaks
