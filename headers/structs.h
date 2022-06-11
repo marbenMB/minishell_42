@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 08:11:15 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 02:32:38 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //----------------------------lexer  data
 typedef struct data
 {
+	struct data *prev;
 	char *str;
 	int token;
 	struct data *next;

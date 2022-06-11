@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/09 08:12:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 02:43:12 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_data	*ft_lstnew_lexer(char *data, int token)
 		return (0);
 	element->str = ft_strdup(data);
 	element->token = token;
-	element ->next = NULL;
+	element ->prev = NULL;
 	return (element);
 }
 //------------------------------------ ft_add_back
@@ -36,6 +36,7 @@ void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
 		return ;
 	}
 	lastnode = ft_lstlast_lexer(lst);
+	new->prev = lastnode;
 	lastnode->next = new;
 }
 
@@ -61,7 +62,7 @@ int	ft_is_operator(char c)
 //-------------------------------------------------
 int ft_special_char(char c)
 {
-	if (ft_strchr("\\#`[]!{};()*~&", c))
+	if (ft_strchr("\\#`[]!{};()*&~", c))
 		return(1);
 	return 0;
 }
