@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 12:14:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:18:59 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,6 @@ t_data	*analyse_buffer(char *buffer)
 		write (2, "syntax error", 12);
 		return(NULL);
 	}
-	// while(data)
-	// {
-	// 	printf("data: (%s)	      |	token: (%5d)\n", data->str, data->token);
-	// 	data = data->next;
-	// }
 	free(buffer);
 	return(data);
 }
@@ -199,5 +194,3 @@ int	save_operator_data(char **buffer, t_data **data, int flag)
 	free(str2);
 	return (0);
 }
-// echo -n "hello" | grep p << filename
-//  ls | grep "hello" >> out > file// leaks

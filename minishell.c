@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 12:07:26 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/11 22:23:08 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int main(int ac, char  **av, char **env)
 		if(ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		data = analyse_buffer(buffer);
+		//-------------------------------- print data
+		while(data)
+		{
+			printf("data: (%s)	      |	token: (%5d)\n", data->str, data->token);
+			data = data->next;
+		}
 		if (data)
 		{
 			back_up = data;
@@ -42,3 +48,5 @@ int main(int ac, char  **av, char **env)
 	}
 	return(0);
 }
+// echo -n "hello" | grep p << filename
+//  ls | grep "hello" >> out > file// leaks

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 10:39:09 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/12 06:56:27 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,13 @@ int	save_operator_data(char **buffer, t_data **data, int flag);
 #endif
 
 // TODO : 
-// first parte is token operators
-// token others as words and skip space exepte inside double quotes
-// check word tokens to 3 partes :
-// 1 : filename
-// 2 : dollar word 
-// 3 : simple word
-//---------------------------------------
-// need to handel $ and ? case in spaecial char inside in outside "" 
-// add history 
-//----------------------------------
-// norme some functions and hande
-// check error logic function
-// moraja3a ldakchi li khsna ndiro 
-// nchofo blan dial expander
+// norme 
+// leaks -> valgrind
+// expander :
+	// double quptes "" and single quotes ''
+	// $ vraibles
+	// export problem with spaces !!
+// check files accebility
+// rio problem in the last line
+// split cmds for the executer in struct with thier flag separated
+// $ ? cases
