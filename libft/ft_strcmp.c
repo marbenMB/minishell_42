@@ -6,11 +6,12 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:42:21 by abellakr          #+#    #+#             */
-/*   Updated: 2022/05/30 15:43:13 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:48:52 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

@@ -6,13 +6,13 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/11 12:13:09 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/12 15:45:01 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//------------------------------------------------------------ create  a new node in my list
+//------------------------ create  a new node in my list
 t_data	*ft_lstnew_lexer(char *data, int token)
 {
 	t_data	*element;
@@ -26,6 +26,7 @@ t_data	*ft_lstnew_lexer(char *data, int token)
 	element->prev = NULL;
 	return (element);
 }
+
 //------------------------------------ ft_add_back
 void	ft_lstadd_back_lexer(t_data **lst, t_data *new)
 {
@@ -53,17 +54,19 @@ t_data	*ft_lstlast_lexer(t_data **lst)
 		backup = backup->next;
 	return (backup);
 }
-//-----------------------------------------------
+
+//----------------------------------------------- check if operator
 int	ft_is_operator(char c)
 {
-	if(ft_strchr("<>|", c))
-		return 1;
-	return 0;	
+	if (ft_strchr("<>|", c))
+		return (1);
+	return (0);
 }
-//-------------------------------------------------
-int ft_special_char(char c)
+
+//------------------------------------------------- check special char
+int	ft_special_char(char c)
 {
 	if (ft_strchr("\\#`[]!{};()*&~", c))
-		return(1);
-	return 0;
+		return (1);
+	return (0);
 }
