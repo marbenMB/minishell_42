@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 08:37:59 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:29:34 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 t_env	*get_env(char **env)
 {
 	int i;
-	int j;
-	int k;
-	int l;
 	char *var;
 	char *value;
 	t_env *my_env;
@@ -29,27 +26,46 @@ t_env	*get_env(char **env)
 	value = NULL;
 	while (env[i])
 	{
-		j = 0;
-		k = 0;
-		while(env[i][j] != '=')
-		{
-			k++;
-			j++;
-		}
-		var = ft_substr(env[i], 0, k);
-		j++;
-		l = j;
-		k = 0;
-		while(env[i][j])
-		{
-			k++;
-			j++;
-		}
-		value = ft_substr(env[i], l, k);
+		var = get_var(env[i]);
+		value = get_value(env[i]);
 		ft_lstadd_back_expander(&my_env, ft_lstnew_expander(var, value));
 		free(var);
 		free(value);
 		i++;
 	}
 	return(my_env);
+}
+//------------------------------------------------ get var
+char *get_var(char *line)
+{
+	int k;
+	char *var;
+
+	k = 0;
+	while(line[k] != '=')
+		k++;
+	var = ft_substr(line, 0, k);
+	return(var);
+}
+//------------------------------------------------ get value
+char *get_value(char *line)
+{
+	int k;
+	int l;
+	int j;
+	char *value;
+
+	k = 0;
+	j = 0;
+	while(line[k] != '=')
+		k++;
+	k++;
+	l = k;
+	while(line[k])
+	{
+		k++;
+		j++;
+	}
+	value = ft_substr(line, l, j);
+	return(value);
 }

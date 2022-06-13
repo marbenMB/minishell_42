@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 07:46:50 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/13 11:30:19 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void	free_data(t_data **data);
 t_env	*ft_lstnew_expander(char *var, char *value);
 void	ft_lstadd_back_expander(t_env **lst, t_env *new);
 t_env	*ft_lstlast_expander(t_env **lst);
+void	free_data2(t_env **env);
 //---------------------------- get env
 t_env	*get_env(char **env);
+char *get_var(char *line);
+char *get_value(char *line);
 #endif
 
 // TODO : 
