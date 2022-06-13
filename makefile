@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/12 15:35:14 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/13 08:06:19 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ CC = cc
 CFlAGS = -Wall -Wextra -Werror
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
-SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c
+SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
+		./expander/expander.c ./expander/expander_utlis.c
 OBJ = $(SRC:.c=.o)
 
 %.o:%.c $(SRC)

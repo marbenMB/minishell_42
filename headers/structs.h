@@ -6,13 +6,13 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/12 15:42:37 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/13 08:03:35 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef STRUCTS_H
 # define STRUCTS_H
-//----------------------------lexer  data
+//---------------------------- lexer  data
 typedef struct data
 {
 	struct data	*prev;
@@ -20,4 +20,19 @@ typedef struct data
 	int			token;
 	struct data	*next;
 }t_data;
+//---------------------------- env data
+typedef struct env
+{
+	struct env	*prev;
+	char		*var;
+	char		*value;
+	struct env	*next;
+}t_env;
+//--------------------------- shell data
+typedef struct shell
+{
+	t_data	*data;
+	t_env	*env;
+	int		exit_status;
+}t_shell;
 #endif

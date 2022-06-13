@@ -6,13 +6,13 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/12 15:41:41 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/13 07:46:50 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef MINISHELL_H
 # define MINISHELL_H
-// ************************************* includes
+// ********************************************** includes
 # include "headers/includes.h"
 # include "headers/macros.h"
 # include "headers/structs.h"
@@ -38,11 +38,16 @@ void	check_flag(char **buffer, int flag);
 int		count_cmd_word_len(char **buffer);
 //------------------------------ tools
 void	free_data(t_data **data);
+//*************************************************** expander
+//--------------------------- utils
+t_env	*ft_lstnew_expander(char *var, char *value);
+void	ft_lstadd_back_expander(t_env **lst, t_env *new);
+t_env	*ft_lstlast_expander(t_env **lst);
+//---------------------------- get env
+t_env	*get_env(char **env);
 #endif
 
 // TODO : 
-// norme 
-// leaks -> valgrind
 // expander :
 	// double quptes "" and single quotes ''
 	// $ varaibles
@@ -51,3 +56,4 @@ void	free_data(t_data **data);
 // rio problem in the last line
 // split cmds for the executer in struct with thier flag separated
 // $ ? cases
+// exit status cases save in 
