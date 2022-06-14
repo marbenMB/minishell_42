@@ -6,66 +6,50 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 11:29:34 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/14 21:15:12 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../minishell.h"
 
-//----------------------------------------------- get env variable
-t_env	*get_env(char **env)
+//----------------------------------------------------- exapande data variables
+void	expander(t_data **data, t_env *env)
 {
-	int i;
-	char *var;
-	char *value;
-	t_env *my_env;
+	t_data *backup;
 
-	i = 0;
-	my_env = NULL;
-	var = NULL;
-	value = NULL;
-	while (env[i])
+	backup = *data;
+	while (backup)
 	{
-		var = get_var(env[i]);
-		value = get_value(env[i]);
-		ft_lstadd_back_expander(&my_env, ft_lstnew_expander(var, value));
-		free(var);
-		free(value);
-		i++;
+		// send node to check availabe variables to be expanded
+		backup = backup->next;
 	}
-	return(my_env);
 }
-//------------------------------------------------ get var
-char *get_var(char *line)
+//------------------------------------------------------ find the correct value to the env variable
+char	*dollar_expander(char *var, t_env *env)
 {
-	int k;
-	char *var;
+	t_env *backup;
+	char *correct_value;
 
-	k = 0;
-	while(line[k] != '=')
-		k++;
-	var = ft_substr(line, 0, k);
-	return(var);
-}
-//------------------------------------------------ get value
-char *get_value(char *line)
-{
-	int k;
-	int l;
-	int j;
-	char *value;
-
-	k = 0;
-	j = 0;
-	while(line[k] != '=')
-		k++;
-	k++;
-	l = k;
-	while(line[k])
+	backup = env;
+	correct_value = NULL;
+	while(backup)
 	{
-		k++;
-		j++;
+		if(var == backup->var)
+		{
+			correct_value =  ft_strdup(backup->value);
+			break;
+		}
+		backup = backup->next;
 	}
-	value = ft_substr(line, l, j);
-	return(value);
+	return(correct_value);
+}
+//--------------------------------------------- expande in  each node
+void	check_data(t_data **node, t_env *env)
+{
+	t_data *backup;
+	
+	int double_quotes;
+	int single_quotes;
+
+	backup = *node;
 }

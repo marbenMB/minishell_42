@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 11:30:19 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/14 21:10:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char *get_value(char *line);
 	// $ varaibles
 	// export problem with spaces !!
 // check files accebility
-// rio problem in the last line
+// rio problem in the last line and middle
 // split cmds for the executer in struct with thier flag separated
 // $ ? cases
 // exit status cases save in 

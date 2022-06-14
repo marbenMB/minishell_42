@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 08:03:35 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:30:58 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,4 @@ typedef struct shell
 	t_env	*env;
 	int		exit_status;
 }t_shell;
-#endif
+# endif

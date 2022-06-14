@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 11:32:38 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:52:57 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(int ac, char **av, char **env)
 	char	*buffer;
 	t_shell	shell;
 
-	if(env == NULL)
-		return (write(2, "empty env", 9) ,1);
+	if(!env || !env[0])
+		return (write(2, "empty env\n", 10) ,1);
 	ac = 0;
 	av = NULL;
 	shell.env = get_env(env);
