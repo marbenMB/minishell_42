@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/14 13:52:57 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:55:22 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(int ac, char **av, char **env)
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		shell.data = analyse_buffer(buffer);
+		expander(&shell.data, shell.env);
+		while(shell.data)
+		{
+			printf("%s    -> %d\n", shell.data->str, shell.data->token);
+			shell.data = shell.data->next;
+		}
 		free_data(&(shell.data));
 	}
 	free_data2(&(shell.env));

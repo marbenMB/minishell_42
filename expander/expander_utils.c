@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_utlis.c                                   :+:      :+:    :+:   */
+/*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 08:05:36 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 08:06:46 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:01:54 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,23 @@ t_env	*ft_lstlast_expander(t_env **lst)
 	while (backup->next != NULL)
 		backup = backup->next;
 	return (backup);
+}
+//------------------------------------------------------ find the correct value to the env variable
+char	*var_finder(char *var, t_env *env)
+{
+	t_env *backup;
+	char *correct_value;
+
+	backup = env;
+	correct_value = NULL;
+	while(backup)
+	{
+		if(var == backup->var)
+		{
+			correct_value =  ft_strdup(backup->value);
+			break;
+		}
+		backup = backup->next;
+	}
+	return(correct_value);
 }
