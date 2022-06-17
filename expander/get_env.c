@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 11:41:50 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 11:42:02 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:07:58 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_env	*get_env(char **env)
 	my_env = NULL;
 	var = NULL;
 	value = NULL;
+	ft_lstadd_back_expander(&my_env, ft_lstnew_expander("?", "0")); // first node hia exit status
 	while (env[i])
 	{
 		var = get_var(env[i]);

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/14 13:30:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:55:45 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct data
 	int			token;
 	struct data	*next;
 }t_data;
-//---------------------------- env data
+//---------------------------- private env data
 typedef struct env
 {
 	struct env	*prev;
@@ -33,6 +33,5 @@ typedef struct shell
 {
 	t_data	*data;
 	t_env	*env;
-	int		exit_status;
 }t_shell;
 # endif
