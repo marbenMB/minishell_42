@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 17:28:35 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:09:50 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*expande_str_data(char *str, t_env *env)
 			i--;
 		} 
 		if(new[i] == '$' && quote_type != '\'')
-			i = dollar_var(&str, env);
+			i = dollar_var(&new, env);
 		i++;
 	}
 	return (new);
@@ -70,13 +70,14 @@ int dollar_var(char **str, t_env *env)
 	char *after_var;
 	char *var;
 	int i ;
+	// printf("\n%s\n", *str);
 	//-------------------------------------------- allocation in those functions
 	after_var = after(*str);
 	before_var = before(*str);
 	var = in_var(*str, env);
+	// printf("%s\n%s\n%s\n", before_var, var, after_var);
 	//----------------------------------------------------------------------------
-	printf("\n(%s) (%s)  (%s)\n", before_var, var, after_var);
-	// free(*str);
+	free(*str);
 	*str = ft_strjoin(before_var,var);
 	i = ft_strlen(*str) - 1;
 	*str = ft_strjoin(*str, after_var);
@@ -110,7 +111,7 @@ char *after(char *str)
 {
 	while(*str && *str != '$')
 		str++;
-	while(*str && *str != ' ')
+	while(*str && *str != ' ' && *str != '"' && *str != '\'')
 	{
 		if(ft_is_operator(*str) == 1)
 			break;
@@ -131,7 +132,7 @@ char *in_var(char *str, t_env *env)
 		str++;
 	str++;
 	var = ft_strdup(str);
-	while(*str && *str != ' ' && ft_is_operator(*str) == 0)
+	while(*str && *str != ' ' && *str != '"' && *str != '\'' && ft_is_operator(*str) == 0)
 	{
 		i++;
 		str++;
