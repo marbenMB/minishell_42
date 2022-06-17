@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 20:51:41 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:29:20 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int dollar_var(char **str, t_env *env)
 	after_var = after(*str);
 	before_var = before(*str);
 	var = in_var(*str, env);
-	// printf("%s\n%s\n%s\n", before_var, var, after_var);
 	//----------------------------------------------------------------------------
 	free(*str);
 	*str = ft_strjoin(before_var,var);
@@ -106,36 +105,43 @@ char *before(char *str)
 //------------------------------------------ return str after variable --> in progress
 char *after(char *str)
 {
-	while(*str && *str != '$')
-		str++;
-	while(*str && *str != ' ' && *str != '"' && *str != '\'')
+	char *backup;
+
+	backup = str;
+	while(*backup && *backup != '$')
+		backup++;
+	while(*backup && *backup != ' ' && *backup != '"' && *backup != '\'')
 	{
-		if(ft_is_operator(*str) == 1)
+		if(ft_is_operator(*backup) == 1)
 			break;
-		str++;
+		backup++;
 	}
-	return (ft_strdup(str));	
+	return (ft_strdup(backup));	
 }
 //------------------------------------------------------- return variable value
 char *in_var(char *str, t_env *env)
 {
-	char *var;
+	char *var1;
+	char *var2;
 	char *value;
 	int i;
 	
-	var = NULL;
+	var1 = NULL;
+	var2 = NULL;
 	i = 0;
 	while(*str != '$')
 		str++;
 	str++;
-	var = ft_strdup(str);
+	var1 = ft_strdup(str);
 	while(*str && *str != ' ' && *str != '"' && *str != '\'' && ft_is_operator(*str) == 0)
 	{
 		i++;
 		str++;
 	}
-	var = ft_substr(var, 0 ,i);
-	value = var_finder(var, env);
+	var2 = ft_substr(var1, 0 ,i);
+	free(var1);
+	value = var_finder(var2, env);
+	free(var2);
 	return (value);
 		
 		
