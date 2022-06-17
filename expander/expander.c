@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 19:09:50 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:58:12 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ char	*expande_str_data(char *str, t_env *env)
 
 	i = 0;
 	quote_type = 0;
-	t_env *hhhh = env;
-	hhhh = NULL ;
 	new = ft_strdup(str);
 	while(new[i])
 	{
@@ -70,7 +68,6 @@ int dollar_var(char **str, t_env *env)
 	char *after_var;
 	char *var;
 	int i ;
-	// printf("\n%s\n", *str);
 	//-------------------------------------------- allocation in those functions
 	after_var = after(*str);
 	before_var = before(*str);

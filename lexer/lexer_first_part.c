@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 17:57:52 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 20:10:34 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ int	data_reconization(char *buffer, t_data **data)
 	quote = 0;
 	while (*buffer)
 	{
-		if (*buffer == '"' || *buffer == '\'')
-			quote = *buffer;
-		else if (ft_is_operator(*buffer) == 1)
+		if (ft_is_operator(*buffer) == 1)
 		{
 			if (operator_type(&buffer, data) == 1)
 				return (1);
 		}
 		else if (ft_is_operator(*buffer) == 0)
 		{
+			if (*buffer == '"' || *buffer == '\'')
+				quote = *buffer;
 			if (word_token(&buffer, data, &quote) == 1)
 				return (1);
 		}
