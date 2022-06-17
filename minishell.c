@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 21:14:40 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 21:42:49 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,23 @@ int	main(int ac, char **av, char **env)
 	shell.env = get_env(env);
 	while (1)
 	{
-		buffer = readline ("\n \033[0;32m ➜ minishell  :  \033[0;37m");
+		buffer = readline ("\n ➜ minishell  :  ");
 		add_history(buffer);
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		shell.data = analyse_buffer(buffer);
+		if(shell.data == NULL)
+		{
+			free(shell.env->value);
+			shell.env->value = ft_strdup("-1");
+		}
 		expander(&shell.data, shell.env);
-		// while(shell.data)
-		// {
-		// 	printf("%s\n %d\n", shell.data->str, shell.data->token);
-		// 	printf("\n----------------------------------------------\n");
-		// 	shell.data = shell.data->next;
-		// }
+		while(shell.data)
+		{
+			printf("%s\n %d\n", shell.data->str, shell.data->token);
+			printf("\n----------------------------------------------\n");
+			shell.data = shell.data->next;
+		}
 		free_data(&(shell.data));
 	}
 	free_data2(&(shell.env));
