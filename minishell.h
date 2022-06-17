@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/16 11:58:55 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:47:46 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		operator_error(char *buffer, int i);
 //-------------------- token and save data
 int		data_reconization(char *buffer, t_data **data);
 int		operator_type(char **buffer, t_data **data);
-int		word_token(char **buffer, t_data **data);
+int		word_token(char **buffer, t_data **data, char *quote);
 int		pipe_data(char **buffer, t_data **data);
 int		save_operator_data(char **buffer, t_data **data, int flag);
 void	check_flag(char **buffer, int flag);

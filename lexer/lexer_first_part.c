@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/13 06:12:55 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:57:52 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,21 @@ t_data	*analyse_buffer(char *buffer)
 // ----------------------------------- save data and token reconization
 int	data_reconization(char *buffer, t_data **data)
 {
+	char quote;
+
+	quote = 0;
 	while (*buffer)
 	{
-		if (ft_is_operator(*buffer) == 1)
+		if (*buffer == '"' || *buffer == '\'')
+			quote = *buffer;
+		else if (ft_is_operator(*buffer) == 1)
 		{
 			if (operator_type(&buffer, data) == 1)
 				return (1);
 		}
 		else if (ft_is_operator(*buffer) == 0)
 		{
-			if (word_token(&buffer, data) == 1)
+			if (word_token(&buffer, data, &quote) == 1)
 				return (1);
 		}
 	}
@@ -57,7 +62,7 @@ int	data_reconization(char *buffer, t_data **data)
 }
 
 //<----------------------------------------------------------->    word
-int	word_token(char **buffer, t_data **data)
+int	word_token(char **buffer, t_data **data, char *quote)
 {
 	int		i;
 	char	*str1;
@@ -67,9 +72,10 @@ int	word_token(char **buffer, t_data **data)
 	str1 = *buffer;
 	while (**buffer != '\0')
 	{
+		quotes_checker(**buffer, quote);
 		i++;
 		(*buffer)++;
-		if (ft_is_operator(**buffer) == 1)
+		if (ft_is_operator(**buffer) == 1 && *quote == 0)
 			break ;
 	}
 	str1 = ft_substr(str1, 0, i);

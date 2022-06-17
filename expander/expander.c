@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/16 11:58:39 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:28:35 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ int dollar_var(char **str, t_env *env)
 	char *before_var;
 	char *after_var;
 	char *var;
-	int i;
-	char *backup = *str;
-
-	before_var = before(backup);
-	after_var = after(backup);
-	var = in_var(backup, env);
-	free(*str);
+	int i ;
+	//-------------------------------------------- allocation in those functions
+	after_var = after(*str);
+	before_var = before(*str);
+	var = in_var(*str, env);
+	//----------------------------------------------------------------------------
+	printf("\n(%s) (%s)  (%s)\n", before_var, var, after_var);
+	// free(*str);
 	*str = ft_strjoin(before_var,var);
 	i = ft_strlen(*str) - 1;
 	*str = ft_strjoin(*str, after_var);
@@ -83,71 +84,61 @@ int dollar_var(char **str, t_env *env)
 	free(var);
 	free(after_var);
 	return (i);
-	// check variable validation name
+	// -------------------> check variable validation name <------------
 }
-//---------------------------- return str before variable
+//---------------------------- return str before variable --> fixed segfault
 char *before(char *str)
 {
 	int i;
 	char *before_var;
 
 	i = 0;
-	before_var = NULL;
+	while(str[i] != '$' && str[i])
+		i++;
+	before_var = (char *)malloc((sizeof(char ) * i) + 1);
+	i = 0;
 	while(str[i] != '$' && str[i])
 	{
 		before_var[i] = str[i];
 		i++;
 	}
-	before_var = ft_strdup(before_var);
+	before_var[i] = 0;
 	return (before_var);
 }
-//------------------------------------------ return str after variable
+//------------------------------------------ return str after variable --> in progress
 char *after(char *str)
 {
-	int i;
-	char *after_var;
-	int j;
-
-	i = 0;
-	j = 0;
-	after_var = NULL;
-	while(str[i] != '$')
-		i++;
-	while(str[i] && str[i] != ' ' && ft_is_operator(str[i]) == 0)
-		i++;
-	while(str[i])
+	while(*str && *str != '$')
+		str++;
+	while(*str && *str != ' ')
 	{
-		after_var[j] = str[i];
-		j++;
-		i++;
+		if(ft_is_operator(*str) == 1)
+			break;
+		str++;
 	}
-	after_var = ft_strdup(after_var);
-	return(after_var);
-	
+	return (ft_strdup(str));	
 }
 //------------------------------------------------------- return variable value
 char *in_var(char *str, t_env *env)
 {
-	int i;
-	int j;
 	char *var;
 	char *value;
-
-	i = 0;
-	j = 0;
+	int i;
+	
 	var = NULL;
-	value = NULL;
-	while(str[i] != '$')
-		i++;
-	i++;
-	while(str[i] && str[i] != ' ' && ft_is_operator(str[i]) == 0)
+	i = 0;
+	while(*str != '$')
+		str++;
+	str++;
+	var = ft_strdup(str);
+	while(*str && *str != ' ' && ft_is_operator(*str) == 0)
 	{
-		var[j] = str[i];
 		i++;
-		j++;
+		str++;
 	}
-	var = ft_strdup(var);
+	var = ft_substr(var, 0 ,i);
 	value = var_finder(var, env);
-	free(var);
-	return(value);
+	return (value);
+		
+		
 }

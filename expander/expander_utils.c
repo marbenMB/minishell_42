@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 08:05:36 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/15 15:31:11 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/17 16:30:56 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*var_finder(char *var, t_env *env)
 	correct_value = NULL;
 	while(backup)
 	{
-		if(var == backup->var)
+		if(ft_strcmp(var, backup->var) == 0)
 		{
 			correct_value =  ft_strdup(backup->value);
 			break;
