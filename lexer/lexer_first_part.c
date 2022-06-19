@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 09:07:47 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:22:44 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ int	word_token(char **buffer, t_data **data, char *quote)
 	str1 = *buffer;
 	while (**buffer != '\0')
 	{
-		quotes_checker(**buffer, quote);
+		// printf("%c", *quote);
 		i++;
 		(*buffer)++;
+		quotes_checker(**buffer, quote);
 		if (ft_is_operator(**buffer) == 1 && *quote == 0)
 			break ;
 	}
