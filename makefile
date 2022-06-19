@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/15 11:31:33 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/18 07:01:10 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CFlAGS = -Wall -Wextra -Werror
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
 SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
-		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c
+		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c
 OBJ = $(SRC:.c=.o)
 
 %.o:%.c $(SRC)
@@ -47,7 +47,7 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	@echo  $(BPurple)" done! "$(Color_Off)
+	@echo  $(BPurple)"minishell by group sbaksi : done! "$(Color_Off)
 	@make -C ./libft
 	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean

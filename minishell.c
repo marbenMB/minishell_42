@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 21:42:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/18 20:53:02 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	main(int ac, char **av, char **env)
 	char	*buffer;
 	t_shell	shell;
 
-	if(!env || !env[0])
-		return (write(2, "empty env\n", 10) ,1);
+	if (!env || !env[0])
+		return (write(2, "empty env\n", 10), 1);
 	ac = 0;
 	av = NULL;
 	shell.env = get_env(env);
 	while (1)
 	{
-		buffer = readline ("\n ➜ minishell  :  ");
+		buffer = readline ("\nminishell$ ");
 		add_history(buffer);
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
@@ -37,8 +37,8 @@ int	main(int ac, char **av, char **env)
 		expander(&shell.data, shell.env);
 		while(shell.data)
 		{
-			printf("%s\n %d\n", shell.data->str, shell.data->token);
-			printf("\n----------------------------------------------\n");
+			printf("\n-------------------------- : node\n");
+			printf("%s\n%d", shell.data->str, shell.data->token);
 			shell.data = shell.data->next;
 		}
 		free_data(&(shell.data));

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 08:05:36 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 16:30:56 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/18 06:57:40 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,12 @@ char	*var_finder(char *var, t_env *env)
 		backup = backup->next;
 	}
 	return(correct_value);
+}
+//------------------------------------------------------------- check quote type 
+void	quotes_checker(char quote, char *quote_type)
+{
+	if((quote == '"' && *quote_type == '"') || (quote == '\'' && *quote_type == '\''))
+		*quote_type = 0;
+	else if((quote == '"' && *quote_type == 0) || (quote == '\'' && *quote_type == 0))
+		*quote_type = quote;	
 }

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/17 17:47:46 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/18 09:57:49 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ char *in_var(char *str, t_env *env);
 
 // TODO : 
 // expander :
-	// $ varaibles
+// norme function 
+// split cmd word
 // check files accebility
 // rio problem in the last line and middle
-// split cmds for the executer in struct with thier flag separated
-// $ ? cases
-// exit status cases save in 
