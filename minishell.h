@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 09:57:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 08:28:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char *get_value(char *line);
 char	*var_finder(char *var, t_env *env);
 //-----------------------------------------
 void	quotes_checker(char quote, char *quote_type);
-char	*expande_str_data(char *str, t_env *env);
+char	*expande_str_data(char *str, t_env *env, int token);
 void	expander(t_data **data, t_env *env);
 int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
@@ -66,3 +66,5 @@ char *in_var(char *str, t_env *env);
 // split cmd word
 // check files accebility
 // rio problem in the last line and middle
+// heredoc do not exapde dollar variable
+// do not expande dolloar word

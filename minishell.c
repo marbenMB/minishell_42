@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 20:53:02 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 08:30:18 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av, char **env)
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
+		
 		expander(&shell.data, shell.env);
 		while(shell.data)
 		{

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 08:59:48 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 08:16:16 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define APND 5 // >>
 # define CMD_WORD 6 // COMMAND WORD
 # define EXIT_STATUS 7 // EXIR STATUS
-# define QUOTED_string 8 // QUOTED STRING
+// # define QUOTED_string 8 // QUOTED STRING  
 // //--------------------------------------------- build in commands
 // # define ECHO 11 // echo command 
 // # define CD 12 // cd command 

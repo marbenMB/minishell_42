@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 06:59:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 08:29:47 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	expander(t_data **data, t_env *env)
 	new_str = NULL;
 	while (backup)
 	{
-		new_str = expande_str_data(backup->str, env);
+		new_str = expande_str_data(backup->str, env, backup->token);
 		free(backup->str);
 		backup->str = new_str;
 		backup = backup->next;
 	}
 }
 //------------------------------------------------------
-char	*expande_str_data(char *str, t_env *env)
+char	*expande_str_data(char *str, t_env *env, int token)
 {
 	int i;
 	char quote_type;
@@ -46,8 +46,11 @@ char	*expande_str_data(char *str, t_env *env)
 			ft_memmove(&new[i], &new[i + 1], ft_strlen(new) - i);
 			i--;
 		} 
-		if(new[i] == '$' && quote_type != '\'')
-			i = dollar_var(&new, env);
+		if(token != 4)
+		{
+			if(new[i] == '$' && quote_type != '\'')
+				i = dollar_var(&new, env);		
+		}
 		i++;
 	}
 	return (new);
