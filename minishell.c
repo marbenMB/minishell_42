@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:22:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:40:10 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
 			shell.env->value = ft_strdup("-1");
 		}
 		
-		// expander(&shell.data, shell.env);
+		expander(&shell.data, shell.env);
 		while(shell.data)
 		{
 			printf("\n-------------------------- : node\n");

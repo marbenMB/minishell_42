@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:34:02 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/12 15:52:01 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:55:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,15 @@ int	count_cmd_word_len(char **buffer)
 	int	i;
 
 	i = 0;
+	char	quote;
+
+	quote = 0;
 	while (**buffer != '\0')
 	{
+		quotes_checker(**buffer, &quote);
 		i++;
 		(*buffer)++;
-		if (ft_is_operator(**buffer) == 1 || **buffer == ' ')
+		if ((ft_is_operator(**buffer) == 1 || **buffer == ' ') && quote == 0)
 			break ;
 	}
 	while (**buffer == ' ')

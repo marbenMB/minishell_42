@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 08:29:47 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:40:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	expander(t_data **data, t_env *env)
 	new_str = NULL;
 	while (backup)
 	{
-		new_str = expande_str_data(backup->str, env, backup->token);
-		free(backup->str);
-		backup->str = new_str;
+		if(backup->token != 6)
+		{
+			new_str = expande_str_data(backup->str, env, backup->token);
+			free(backup->str);
+			backup->str = new_str;
+		}
 		backup = backup->next;
 	}
 }
