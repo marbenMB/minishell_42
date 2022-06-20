@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 08:28:03 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:35:20 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,11 @@ void	free_data2(t_env **env);
 t_env	*get_env(char **env);
 char *get_var(char *line);
 char *get_value(char *line);
-//--------------------------------------
 char	*var_finder(char *var, t_env *env);
 //-----------------------------------------
 void	quotes_checker(char quote, char *quote_type);
 char	*expande_str_data(char *str, t_env *env, int token);
-void	expander(t_data **data, t_env *env);
+void	expander(t_shell *data_shell); 
 int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);

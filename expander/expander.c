@@ -6,25 +6,25 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:40:03 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/20 12:35:43 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../minishell.h"
 
 //----------------------------------------------------- exapande data variables
-void	expander(t_data **data, t_env *env)
+void	expander(t_shell *data_shell)
 {
 	t_data *backup;
 	char *new_str;
 
-	backup = *data;
+	backup = data_shell->data;
 	new_str = NULL;
 	while (backup)
 	{
 		if(backup->token != 6)
 		{
-			new_str = expande_str_data(backup->str, env, backup->token);
+			new_str = expande_str_data(backup->str, data_shell->env, backup->token);
 			free(backup->str);
 			backup->str = new_str;
 		}
