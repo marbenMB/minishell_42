@@ -10,6 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
+#	**********************			**********************
+#                            ****                        *
+#	**********************			**********************
+
 Color_Off='\033[0m'       # Text Reset
 
 # Regular Colors
@@ -32,16 +36,26 @@ BPurple='\033[1;35m'      # Purple
 BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 
+#	**********************			**********************
+#                            RULES                       *
+#	**********************			**********************
+
 NAME = minishell
+
 CC = cc
+
 CFlAGS = -Wall -Wextra -Werror
+
+HEADS = headers/includes.h headers/macros.h headers/structs.h
+
 READ_FLAGS    =  -lreadline  -I .brew/opt/readline/include
 
 SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c
+
 OBJ = $(SRC:.c=.o)
 
-%.o:%.c $(SRC)
+%.o: %.c $(SRC) $(HEADS)
 	@$(CC) $(CFlAGS) -c $< -o $@
 
 all : $(NAME)
@@ -51,11 +65,15 @@ $(NAME) : $(OBJ)
 	@make -C ./libft
 	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
+
 clean : 
 	@make clean -C ./libft
 	@rm -f $(OBJ)
+
 fclean : clean
 	@make fclean -C ./libft
 	@rm -f $(NAME)
+
 re : fclean all
+
 .PHONY : clean fclean bonus re
