@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:34:02 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:55:03 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/20 10:26:34 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	save_operator_data(char **buffer, t_data **data, int flag)
 	i = count_cmd_word_len(buffer);
 	str1 = ft_substr(str1, 0, i);
 	str2 = ft_strtrim(str1, " ");
-	if (ft_strcmp(str2, "|") == 0)
+	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || ft_strcmp(str2, "<<") == 0 || ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0)
 	{
 		free(str1);
 		free(str2);
