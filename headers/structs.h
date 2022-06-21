@@ -31,18 +31,18 @@ typedef struct env
 //------------------------------- cmd data
 typedef struct cmd
 {
-	char *cmd;
-	char **flags;
+	char **cmd_flags;
 	struct cmd *next;
 }t_cmd;
 //--------------------------- shell data
-// typedef struct shell
-// {
-// 	t_data	*data;
-// 	t_env	*env;
-// 	t_cmd	*cmd;
-// }t_shell;
+typedef struct shell
+{
+	t_data	*data;
+	t_env	*env;
+	t_cmd	*cmd;
+}t_shell;
 
+//-------------------------------------------------- afarraji ideas
 // typedef struct redirect
 // {
 // 	int type;

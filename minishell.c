@@ -34,16 +34,36 @@ int	main(int ac, char **av, char **env)
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
-		
-		expander(&shell);
-		while(shell.data)
-		{
-			printf("\n-------------------------- : node\n");
-			printf("%s\n%d", shell.data->str, shell.data->token);
-			shell.data = shell.data->next;
-		}
+		redirection_organizer(&shell);
+		// 1: handle rio cases and 
+		// 2: save cmd data in list 
+		// 3: then exapande data
+			// expander(&shell);
+		// while(shell.data)
+		// {
+		// 	printf("\n-------------------------- : node\n");
+		// 	printf("%s\n%d", shell.data->str, shell.data->token);
+		// 	shell.data = shell.data->next;
+		// }
 		free_data(&(shell.data));
 	}
 	free_data2(&(shell.env));
 	return (0);
+}
+//-------------------------------------------------------------
+void	redirection_organizer(t_shell *global_data)
+{
+	t_data *back_up;
+	t_data *new_data;
+	int pipe_number;
+
+	back_up = global_data->data;
+	new_data = NULL;
+	pipe_number = 0;
+	while(back_up)
+	{
+		if(back_up->token == PIPE)
+			pipe_number++;
+		back_up = back_up->next;
+	}
 }

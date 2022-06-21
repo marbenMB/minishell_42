@@ -36,7 +36,7 @@ int		pipe_data(char **buffer, t_data **data);
 int		save_operator_data(char **buffer, t_data **data, int flag);
 void	check_flag(char **buffer, int flag);
 int		count_cmd_word_len(char **buffer);
-//------------------------------ tools
+//------------------------------ utils
 void	free_data(t_data **data);
 //*************************************************** expander
 //--------------------------- utils
@@ -57,13 +57,6 @@ int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);
 char *in_var(char *str, t_env *env);
+//****************************************************** data orinizer 
+void	redirection_organizer(t_shell *global_data);
 #endif
-
-// TODO : 
-// expander :
-// norme function 
-// split cmd word
-// check files accebility
-// rio problem in the last line and middle
-// heredoc do not exapde dollar variable
-// do not expande dolloar word
