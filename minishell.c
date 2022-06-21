@@ -34,8 +34,8 @@ int	main(int ac, char **av, char **env)
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
-		redirection_organizer(&shell);
 		// 1: handle rio cases and 
+		// redirection_organizer(&shell);
 		// 2: save cmd data in list 
 		// 3: then exapande data
 			// expander(&shell);
