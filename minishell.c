@@ -71,9 +71,25 @@ void	redirection_organizer(t_shell *global_data)
 	{
 		if(check_number == 1)
 			// handle no pipe case 
-		else if(check_number > 1)
+		{
+			while(back_up)
+			{
+				if(back_up->token != CMD_WORD)
+				{
+					ft_lstadd_back_lexer(&new_data, ft_lstnew_lexer(back_up->str, back_up->token));
+				}
+				back_up = back_up->next;
+			}
+		}
+		// else if(check_number > 1)
 			// handle multi pipe cases
 		check_number--;
+	}
+	while(new_data)
+	{
+		printf("\n-----------------------------------------\n");
+		printf("%s\ntoken:%d", new_data->str, new_data->token);
+		new_data = new_data->next;
 	}
 }
 //---------------------------------------------------------------
