@@ -55,15 +55,25 @@ void	redirection_organizer(t_shell *global_data)
 {
 	t_data *back_up;
 	t_data *new_data;
-	int pipe_number;
+	int check_number;
 
 	back_up = global_data->data;
 	new_data = NULL;
-	pipe_number = 0;
+	check_number = 1;
 	while(back_up)
 	{
 		if(back_up->token == PIPE)
-			pipe_number++;
+			check_number++;
 		back_up = back_up->next;
 	}
+	back_up = global_data->data;
+	while(check_number)
+	{
+		if(check_number == 1)
+			// handle no pipe case 
+		else if(check_number > 1)
+			// handle multi pipe cases
+		check_number--;
+	}
 }
+//---------------------------------------------------------------
