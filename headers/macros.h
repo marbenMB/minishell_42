@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:38:52 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 21:16:13 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PIPE 3 // PIPE | 
 # define HEREDOC  4 // <<
 # define APND 5 // >>
-# define CMD_WORD 6 // COMMAND WORD
+# define SIMPLE_CMD 6 // COMMAND WORD
 # define EXIT_STATUS 7 // EXIR STATUS 
 // //--------------------------------------------- build in commands
 // # define ECHO 11 // echo command 

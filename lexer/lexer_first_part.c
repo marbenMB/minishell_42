@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/19 15:50:02 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 21:28:28 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	data_reconization(char *buffer, t_data **data)
 	quote = 0;
 	while (*buffer)
 	{
-		if (ft_is_operator(*buffer) == 1)
+		if (*buffer == '|')
 		{
-			if (operator_type(&buffer, data) == 1)
+			if (pipe_data(&buffer, data) == 1)
 				return (1);
 		}
-		else if (ft_is_operator(*buffer) == 0)
+		else if (*buffer != '|')
 		{
 			if (*buffer == '"' || *buffer == '\'')
 				quote = *buffer;
@@ -75,12 +75,12 @@ int	word_token(char **buffer, t_data **data, char *quote)
 		i++;
 		(*buffer)++;
 		quotes_checker(**buffer, quote);
-		if (ft_is_operator(**buffer) == 1 && *quote == 0)
+		if (**buffer == '|' && *quote == 0)
 			break ;
 	}
 	str1 = ft_substr(str1, 0, i);
 	str2 = ft_strtrim(str1, " ");
-	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, CMD_WORD));
+	ft_lstadd_back_lexer(data, ft_lstnew_lexer(str2, SIMPLE_CMD));
 	free(str1);
 	free(str2);
 	return (0);
