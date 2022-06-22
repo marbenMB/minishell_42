@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 21:16:13 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 22:12:43 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # define HEREDOC  4 // <<
 # define APND 5 // >>
 # define SIMPLE_CMD 6 // COMMAND WORD
-# define EXIT_STATUS 7 // EXIR STATUS 
+# define EXIT_STATUS 7 // EXIR STATUS
+# define CMD 8 
 // //--------------------------------------------- build in commands
 // # define ECHO 11 // echo command 
 // # define CD 12 // cd command 
