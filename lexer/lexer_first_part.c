@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 23:23:50 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:07:07 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ t_data	*analyse_buffer(char *buffer)
 		return (NULL);
 	}
 	// check simple command and organize it and put it in new lincked list
-	final_list = simple_command_analyser(data);
-	free_data(&data);
+	final_list = simple_command_analyser(&data);
 	free(buffer);
 	return (final_list);
 }
@@ -91,12 +90,12 @@ int	word_token(char **buffer, t_data **data, char *quote)
 }
 //************************************************************************************************ new
 //-------------------------------------------------------- NEW list 
-t_data	*simple_command_analyser(t_data *data)
+t_data	*simple_command_analyser(t_data **data)
 {
 	t_data *backup;
 	t_data *new_data;
 	
-	backup = data;
+	backup = *data;
 	new_data = NULL;
 	while(backup)
 	{
@@ -104,33 +103,41 @@ t_data	*simple_command_analyser(t_data *data)
 		if(backup->token == SIMPLE_CMD)
 		{
 			if (simple_command_check(&new_data, backup->str) == 1)
+			{
+				free_data(&new_data);
+				free_data(data);
 				return (NULL);		
+			}
 		}
 			// add pipe token to list
 		else if(backup->token == PIPE)
 			ft_lstadd_back_lexer(&new_data, ft_lstnew_lexer("|", PIPE));
 		backup = backup->next;	
 	}
+	free_data(data);
 	return(new_data);
 }
 //--------------------------------------------------------------- simple command check
 int	simple_command_check(t_data **new_data, char *simple_command)
 {
 	t_data *simple_command_list;
+	t_data *head;
 
 	simple_command_list = NULL;
 	if (data_reconization2(simple_command, &simple_command_list) == 1)
 	{
-		free_data(new_data);
+		free_data(&simple_command_list);
 		write (2, "syntax error", 12);
 		return (1);
 	}
 	// oranize simple commad
+	head = simple_command_list;
 	while(simple_command_list)
 	{
 		ft_lstadd_back_lexer(new_data, ft_lstnew_lexer(simple_command_list->str, simple_command_list->token));
 		simple_command_list = simple_command_list->next;
 	}
+	simple_command_list = head;
 	free_data(&simple_command_list);
 	return (0);
 }
@@ -186,5 +193,12 @@ int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote)
 //---------------------------------------------------------------
 // void oranize_simple_command_list(t_data **simple_command_list)
 // {
- 	
+//  	t_data *backup;
+
+// 	 backup = *simple_command_list;
+// 	 while (backup)
+// 	 {
+// 		 if(backup)
+// 		backup = backup->next; 
+// 	 }
 // }

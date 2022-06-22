@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 23:11:26 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:55:10 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*before(char *str);
 char	*after(char *str);
 char 	*in_var(char *str, t_env *env);
 //******************************************************************* hadchi new
-t_data	*simple_command_analyser(t_data *data);
+t_data	*simple_command_analyser(t_data **data);
 int	simple_command_check(t_data **new_data, char *simple_command);
 int data_reconization2(char *simple_command, t_data **simple_command_list);
 int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote);

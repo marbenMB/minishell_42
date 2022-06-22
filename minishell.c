@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 21:31:31 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:52:41 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	main(int ac, char **av, char **env)
 			shell.env->value = ft_strdup("-1");
 		}
 		// expander(&shell);
-		while(shell.data)
-		{
-			printf("%s\n %d", shell.data->str, shell.data->token);
-			printf("\n-------------------------------------------------\n");
-			shell.data = shell.data->next;
-		}
+		// while(shell.data)
+		// {
+		// 	printf("%s\n %d", shell.data->str, shell.data->token);
+		// 	printf("\n-------------------------------------------------\n");
+		// 	shell.data = shell.data->next;
+		// }
 		free_data(&(shell.data));
 	}
 	free_data2(&(shell.env));
