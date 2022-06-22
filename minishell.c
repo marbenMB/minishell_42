@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/20 12:35:33 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 03:39:33 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,45 +51,32 @@ int	main(int ac, char **av, char **env)
 	return (0);
 }
 //-------------------------------------------------------------
-void	redirection_organizer(t_shell *global_data)
-{
-	t_data *back_up;
-	t_data *new_data;
-	int check_number;
+// void	redirection_organizer(t_shell *global_data)
+// {
+// 	t_data *back_up;
+// 	t_data *simple_cmd;
+// 	t_data *new_data;
 
-	back_up = global_data->data;
-	new_data = NULL;
-	check_number = 1;
-	while(back_up)
-	{
-		if(back_up->token == PIPE)
-			check_number++;
-		back_up = back_up->next;
-	}
-	back_up = global_data->data;
-	while(check_number)
-	{
-		if(check_number == 1)
-			// handle no pipe case 
-		{
-			while(back_up)
-			{
-				if(back_up->token != CMD_WORD)
-				{
-					ft_lstadd_back_lexer(&new_data, ft_lstnew_lexer(back_up->str, back_up->token));
-				}
-				back_up = back_up->next;
-			}
-		}
-		// else if(check_number > 1)
-			// handle multi pipe cases
-		check_number--;
-	}
-	while(new_data)
-	{
-		printf("\n-----------------------------------------\n");
-		printf("%s\ntoken:%d", new_data->str, new_data->token);
-		new_data = new_data->next;
-	}
-}
-//---------------------------------------------------------------
+// 	new_data = NULL;
+// 	back_up = global_data->data;
+// 	while(back_up)
+// 	{
+// 		simple_cmd = 
+// 		if(back_up->token == PIPE)
+			
+		
+// 		back_up = back_up->next;
+// 	}
+// 	//-------------------------------------------------------------- printf new data
+// 	while(new_data)
+// 	{
+// 		printf("\n-----------------------------------------\n");
+// 		printf("%s\ntoken:%d", new_data->str, new_data->token);
+// 		new_data = new_data->next;
+// 	}
+// }
+// //------------------------------------------------------
+// void	simple_cmd_organizer(t_data **simple_cmd)
+// {
+	
+// }
