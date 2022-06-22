@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 00:07:07 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:47:20 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int	simple_command_check(t_data **new_data, char *simple_command)
 		return (1);
 	}
 	// oranize simple commad
+	simple_command_list = oranize_simple_command_list(&simple_command_list);
 	head = simple_command_list;
 	while(simple_command_list)
 	{
@@ -191,14 +192,61 @@ int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote)
 	return (0);
 }
 //---------------------------------------------------------------
-// void oranize_simple_command_list(t_data **simple_command_list)
-// {
-//  	t_data *backup;
+t_data *oranize_simple_command_list(t_data **simple_command_list)
+{
+ 	t_data *backup;
+	 t_data *new_list;
 
-// 	 backup = *simple_command_list;
-// 	 while (backup)
-// 	 {
-// 		 if(backup)
-// 		backup = backup->next; 
-// 	 }
-// }
+	 backup = *simple_command_list;
+	 new_list = NULL;
+	 // check for heredoc
+	// check for rip
+	// check for rop and apnd
+	// check for cmd
+	look_for_heredoc(backup, &new_list);
+	look_for_rip(backup, &new_list);
+	look_for_rop(backup, &new_list);
+	look_for_cmd(backup, &new_list);
+	free_data(simple_command_list);
+	return(new_list);
+}
+//------------------------------------------------------------- look for heredoc
+void	look_for_heredoc(t_data *backup, t_data **new_list)
+{
+	while(backup)
+	{
+		if(backup->token == HEREDOC)
+			ft_lstadd_back_lexer(new_list, 	 ft_lstnew_lexer(backup->str, backup->token));
+		backup = backup->next;
+	}
+}
+//------------------------------------------------------------- look for rip
+void	look_for_rip(t_data *backup, t_data **new_list)
+{
+	while(backup)
+	{
+		if(backup->token == RIP)
+			ft_lstadd_back_lexer(new_list, 	 ft_lstnew_lexer(backup->str, backup->token));
+		backup = backup->next;
+	}
+}
+//------------------------------------------------------------- look for rop and apnd
+void	look_for_rop(t_data *backup, t_data **new_list)
+{
+	while(backup)
+	{
+		if(backup->token == ROP || backup->token == APND)
+			ft_lstadd_back_lexer(new_list, 	 ft_lstnew_lexer(backup->str, backup->token));
+		backup = backup->next;
+	}
+}
+//------------------------------------------------------------- look for cmd
+void	look_for_cmd(t_data *backup, t_data **new_list)
+{
+	while(backup)
+	{
+		if(backup->token == CMD)
+			ft_lstadd_back_lexer(new_list, 	 ft_lstnew_lexer(backup->str, backup->token));
+		backup = backup->next;
+	}
+}
