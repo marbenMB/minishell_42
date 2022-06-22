@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 23:12:46 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 23:23:50 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ int	simple_command_check(t_data **new_data, char *simple_command)
 		return (1);
 	}
 	// oranize simple commad
-	// add organized simple command to my list
 	while(simple_command_list)
 	{
 		ft_lstadd_back_lexer(new_data, ft_lstnew_lexer(simple_command_list->str, simple_command_list->token));
@@ -174,7 +173,7 @@ int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote)
 		i++;
 		(*simple_command)++;
 		quotes_checker(**simple_command, quote);
-		if (**simple_command == '|' && *quote == 0)
+		if (ft_is_operator(**simple_command) == 1 && *quote == 0)
 			break ;
 	}
 	str1 = ft_substr(str1, 0, i);
@@ -184,3 +183,8 @@ int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote)
 	free(str2);
 	return (0);
 }
+//---------------------------------------------------------------
+// void oranize_simple_command_list(t_data **simple_command_list)
+// {
+ 	
+// }
