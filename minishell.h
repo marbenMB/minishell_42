@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 15:02:10 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:04:27 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);
 char *in_var(char *str, t_env *env);
-//****************************************************** data orinizer 
+//****************************************************** data organizer 
 
 #endif
 // lala matms7ch hadchi  rah kan7fdo  o ana kancoder
