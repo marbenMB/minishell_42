@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 00:00:33 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:53:07 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ int	main(int ac, char **av, char **env)
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
 		shell.data = analyse_buffer(buffer);
+		//--------------------------------------------------- check exit status in syntax error messages
 		if(shell.data == NULL)
 		{
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
-		// printf("\n%s\n", shell.env->value);
+		else if(shell.data != NULL)
+		{
+			free(shell.env->value);
+			shell.env->value = ft_strdup("0");
+		}
+		//------------------------------------------------
 		// expander(&shell);
 		// while(shell.data)
 		// {

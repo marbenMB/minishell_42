@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 23:51:03 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:18:11 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,7 +284,7 @@ t_data	*join_cmds(t_data **new_list_cmd)
 		}
 		backup = backup->next;
 	}
-	str2 = ft_strtrim(str1, "      ");
+	str2 = ft_strtrim(str1, " ");
 	ft_lstadd_back_lexer(&new_list, ft_lstnew_lexer(str2, CMD));
 	free(str1);
 	free(str2);
