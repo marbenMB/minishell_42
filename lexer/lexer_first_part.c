@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 03:21:46 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:11:18 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,21 @@ t_data	*analyse_buffer(char *buffer)
 	buffer = ft_strtrim(str, " ");
 	if (check_syntax_error(buffer) == 1)
 	{
+		free(buffer);
 		write (2, "syntax error", 12);
 		return (NULL);
 	}		
 	if (data_reconization1(buffer, &data) == 1)
 	{
 		free_data(&data);
+		free(buffer);
 		write (2, "syntax error", 12);
 		return (NULL);
 	}
 	// check simple command and organize it and put it in new lincked list
 	final_list = simple_command_analyser(&data);
 	free(buffer);
+	free_data(&data);
 	return (final_list);
 }
 
@@ -114,7 +117,6 @@ t_data	*simple_command_analyser(t_data **data)
 			ft_lstadd_back_lexer(&new_data, ft_lstnew_lexer("|", PIPE));
 		backup = backup->next;	
 	}
-	free_data(data);
 	return(new_data);
 }
 //--------------------------------------------------------------- simple command check
@@ -127,6 +129,7 @@ int	simple_command_check(t_data **new_data, char *simple_command)
 	if (data_reconization2(simple_command, &simple_command_list) == 1)
 	{
 		free_data(&simple_command_list);
+		free(new_data);
 		write (2, "syntax error", 12);
 		return (1);
 	}
@@ -259,13 +262,11 @@ t_data	*join_cmds(t_data **new_list_cmd)
 	t_data *new_list;
 	char *str1;
 	char *str2;
-	char *str3;
 
 	backup = *new_list_cmd;
 	new_list = NULL;
 	str1 = NULL;
 	str2 = NULL;
-	str3 = NULL;
 	while (backup)
 	{	
 		if(backup->token != CMD)
@@ -279,11 +280,9 @@ t_data	*join_cmds(t_data **new_list_cmd)
 		{
 			str2 = ft_strjoin(str1, ft_strdup(" "));
 			free(str1);
-			str3 = ft_strdup(backup->str);
-			str1 = ft_strjoin(str2, str3);
-			free(str2);
-			free(str3);
+			str1 = ft_strjoin(str2, backup->str);
 		}
+		free(str2);
 		backup = backup->next;
 	}
 	str2 = ft_strtrim(str1, " ");
