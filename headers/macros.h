@@ -30,3 +30,6 @@
 // # define  ENV 16 // ENV  COMMAD
 // # define  EXIT 17 // EXIT  COMMAD
 #endif
+
+
+//	TODO : !!! Check exit status in new lexer algo
