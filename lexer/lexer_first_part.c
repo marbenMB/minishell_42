@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 14:11:18 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 23:51:03 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,11 @@ int	simple_command_check(t_data **new_data, char *simple_command)
 	if (data_reconization2(simple_command, &simple_command_list) == 1)
 	{
 		free_data(&simple_command_list);
-		free(new_data);
 		write (2, "syntax error", 12);
 		return (1);
 	}
 	// oranize simple commad
-	simple_command_list = oranize_simple_command_list(&simple_command_list);
+	simple_command_list = oranize_simple_command_list(&simple_command_list); // hna fin kayn segfault :)
 	head = simple_command_list;
 	while(simple_command_list)
 	{
@@ -281,11 +280,11 @@ t_data	*join_cmds(t_data **new_list_cmd)
 			str2 = ft_strjoin(str1, ft_strdup(" "));
 			free(str1);
 			str1 = ft_strjoin(str2, backup->str);
+			free(str2);
 		}
-		free(str2);
 		backup = backup->next;
 	}
-	str2 = ft_strtrim(str1, " ");
+	str2 = ft_strtrim(str1, "      ");
 	ft_lstadd_back_lexer(&new_list, ft_lstnew_lexer(str2, CMD));
 	free(str1);
 	free(str2);

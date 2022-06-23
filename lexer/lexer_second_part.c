@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:34:02 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 22:57:38 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 23:58:59 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	save_operator_data(char **simple_command, t_data **simple_command_list, int 
 
 	check_flag(simple_command, flag);
 	str1 = *simple_command;
-	i = 	files_lim_len(simple_command);
+	i = files_lim_len(simple_command);
+	if(i == 0)
+		return (1);
 	str1 = ft_substr(str1, 0, i);
 	str2 = ft_strtrim(str1, " ");
 	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || ft_strcmp(str2, "<<") == 0 || ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0)

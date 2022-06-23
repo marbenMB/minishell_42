@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 22:12:43 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 00:00:40 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,5 @@
 
 
 //	TODO : !!! Check exit status in new lexer algo
+// check leack fo space
+// moraj3a lga3 tests
