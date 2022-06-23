@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 00:44:05 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 02:18:26 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	look_for_heredoc(t_data *backup, t_data **new_list);
 void	look_for_rip(t_data *backup, t_data **new_list);
 void	look_for_rop(t_data *backup, t_data **new_list);
 void	look_for_cmd(t_data *backup, t_data **new_list);
+t_data	*join_cmds(t_data **new_list_cmd);
 #endif

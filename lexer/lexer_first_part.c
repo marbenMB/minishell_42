@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:11:13 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 00:47:20 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:21:46 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,10 +203,12 @@ t_data *oranize_simple_command_list(t_data **simple_command_list)
 	// check for rip
 	// check for rop and apnd
 	// check for cmd
+	// check cmd tab3aha cmd 
 	look_for_heredoc(backup, &new_list);
 	look_for_rip(backup, &new_list);
 	look_for_rop(backup, &new_list);
 	look_for_cmd(backup, &new_list);
+	new_list = join_cmds(&new_list);
 	free_data(simple_command_list);
 	return(new_list);
 }
@@ -249,4 +251,46 @@ void	look_for_cmd(t_data *backup, t_data **new_list)
 			ft_lstadd_back_lexer(new_list, 	 ft_lstnew_lexer(backup->str, backup->token));
 		backup = backup->next;
 	}
+}
+//------------------------------------------------------
+t_data	*join_cmds(t_data **new_list_cmd)
+{
+	t_data *backup;
+	t_data *new_list;
+	char *str1;
+	char *str2;
+	char *str3;
+
+	backup = *new_list_cmd;
+	new_list = NULL;
+	str1 = NULL;
+	str2 = NULL;
+	str3 = NULL;
+	while (backup)
+	{	
+		if(backup->token != CMD)
+			ft_lstadd_back_lexer(&new_list, ft_lstnew_lexer(backup->str, backup->token));
+		backup = backup->next;
+	}
+	backup = *new_list_cmd;
+	while (backup)
+	{
+		if(backup->token == CMD)
+		{
+			str2 = ft_strjoin(str1, ft_strdup(" "));
+			free(str1);
+			str3 = ft_strdup(backup->str);
+			str1 = ft_strjoin(str2, str3);
+			free(str2);
+			free(str3);
+		}
+		backup = backup->next;
+	}
+	str2 = ft_strtrim(str1, " ");
+	ft_lstadd_back_lexer(&new_list, ft_lstnew_lexer(str2, CMD));
+	free(str1);
+	free(str2);
+	free_data(new_list_cmd);
+	return (new_list);
+	
 }

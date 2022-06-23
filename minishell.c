@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 00:50:57 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:21:08 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av, char **env)
 		// expander(&shell);
 		// while(shell.data)
 		// {
-		// 	printf("%s\n %d", shell.data->str, shell.data->token);
+		// 	printf("|%s|\n %d", shell.data->str, shell.data->token);
 		// 	printf("\n-------------------------------------------------\n");
 		// 	shell.data = shell.data->next;
 		// }
