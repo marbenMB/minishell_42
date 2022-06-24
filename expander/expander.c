@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/20 12:35:43 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 02:51:21 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	expander(t_shell *data_shell)
 	new_str = NULL;
 	while (backup)
 	{
-		if(backup->token != 6)
+		if(backup->token != 8)
 		{
 			new_str = expande_str_data(backup->str, data_shell->env, backup->token);
 			free(backup->str);

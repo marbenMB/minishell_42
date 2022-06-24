@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 00:53:07 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 03:19:24 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ int	main(int ac, char **av, char **env)
 			free(shell.env->value);
 			shell.env->value = ft_strdup("-1");
 		}
+		//------------------------------------------ had wach n7ido ola la
 		else if(shell.data != NULL)
 		{
 			free(shell.env->value);
 			shell.env->value = ft_strdup("0");
 		}
 		//------------------------------------------------
-		// expander(&shell);
+		expander(&shell);
 		// while(shell.data)
 		// {
 		// 	printf("|%s|\n %d", shell.data->str, shell.data->token);
