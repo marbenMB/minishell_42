@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 15:34:02 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 23:58:59 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 20:09:09 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	save_operator_data(char **simple_command, t_data **simple_command_list, int 
 		return (1);
 	str1 = ft_substr(str1, 0, i);
 	str2 = ft_strtrim(str1, " ");
-	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || ft_strcmp(str2, "<<") == 0 || ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0)
+	if (ft_strcmp(str2, "|") == 0 || ft_strcmp(str2, "<") == 0 || ft_strcmp(str2, "<<") == 0 || ft_strcmp(str2, ">") == 0 || ft_strcmp(str2, ">>") == 0 || ft_is_operator(str2[0]) == 1)
 	{
 		free(str1);
 		free(str2);
@@ -89,7 +89,7 @@ int	files_lim_len(char **simple_command)
 		quotes_checker(**simple_command, &quote);
 		i++;
 		(*simple_command)++;
-		if ((ft_is_operator(**simple_command) == 1 || **simple_command == ' ') && quote == 0)
+		if ((ft_is_operator(**simple_command) == 1 || **simple_command == ' ' || **simple_command == '-') && quote == 0)
 			break ;
 	}
 	while (**simple_command == ' ')
