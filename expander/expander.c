@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/25 01:53:52 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:44:15 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ char	*expande_str_data(char *str, t_env *env, int token)
 	return (new);
 }
 //-------------------------------------------------------------------
-void	command_filler(char *cmd, t_cmd *cmds_table)
-{
-	// count the number of words I have in the table 
-	// alloc for those words
-	// fill table of 2d array with those words
-	// expande the 2d array table
-	// add  the table to my list of tables	
-}
+// void	command_filler(char *cmd, t_cmd *cmds_table)
+// {
+// 	// count the number of words I have in the table 
+// 	// alloc for those words
+// 	// fill table of 2d array with those words
+// 	// expande the 2d array table
+// 	// add  the table to my list of tables	
+// }
