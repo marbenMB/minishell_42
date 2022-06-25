@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/22 21:42:14 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/25 01:24:31 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,4 @@ typedef struct shell
 	t_env	*env;
 	t_cmd	*cmd;
 }t_shell;
-
-//-------------------------------------------------- afarraji ideas
-// typedef struct redirect
-// {
-// 	int type;
-// 	char	*filename;
-// 	t_redirct	*next;
-// }t_redirct;
-
-// typedef struct simple_cmd
-// {
-// 	t_redirct	*redirection; 
-// 	char		**cmd;
-// 	t_s_cmd 	*next;
-// }t_s_cmd;
-
-
 # endif

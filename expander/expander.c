@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 02:51:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/25 01:24:15 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	expander(t_shell *data_shell)
 		}
 		backup = backup->next;
 	}
+	// backup = data_shell->data;
+	// while(backup)
+	// {
+	// 	if(backup->token == 8)
+	// 		// function to put data in 2D array 
+	// 	backup = backup->next;
+	// }
+	// 		expande this data in this array 
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -58,4 +66,12 @@ char	*expande_str_data(char *str, t_env *env, int token)
 	}
 	return (new);
 }
-
+//-------------------------------------------------------------------
+// void	command_filler(char *cmd, t_cmd *cmds_table)
+// {
+// 	// count the number of words I have in the table 
+// 	// alloc for those words
+// 	// fill table of 2d array with those words
+// 	// add  the table to my list of tables
+	
+// }

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 02:18:26 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/24 21:18:35 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ t_data	*analyse_buffer(char *buffer);
 int		data_reconization1(char *buffer, t_data **data);
 int		word_token(char **buffer, t_data **data, char *quote);
 int		pipe_data(char **buffer, t_data **data);
+//******************************************************************* hadchi new
+t_data	*simple_command_analyser(t_data **data);
+int	simple_command_check(t_data **new_data, char *simple_command);
+int data_reconization2(char *simple_command, t_data **simple_command_list);
+int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote);
+int	operator_type(char **simple_command, t_data **simple_command_list);
+int	save_operator_data(char **simple_command, t_data **simple_command_list, int flag);
+void	check_flag(char **simple_command, int flag);
+int	files_lim_len(char **simple_command);
+t_data *oranize_simple_command_list(t_data **simple_command_list);
+void	look_for_heredoc(t_data *backup, t_data **new_list);
+void	look_for_rip(t_data *backup, t_data **new_list);
+void	look_for_rop(t_data *backup, t_data **new_list);
+void	look_for_cmd(t_data *backup, t_data **new_list);
+t_data	*join_cmds(t_data **new_list_cmd);
 //*************************************************** expander
 //--------------------------- utils
 t_env	*ft_lstnew_expander(char *var, char *value);
@@ -52,19 +67,4 @@ int		dollar_var(char **str, t_env *env);
 char	*before(char *str);
 char	*after(char *str);
 char 	*in_var(char *str, t_env *env);
-//******************************************************************* hadchi new
-t_data	*simple_command_analyser(t_data **data);
-int	simple_command_check(t_data **new_data, char *simple_command);
-int data_reconization2(char *simple_command, t_data **simple_command_list);
-int	cmd_token(char **simple_command, t_data **simple_command_list, char *quote);
-int	operator_type(char **simple_command, t_data **simple_command_list);
-int	save_operator_data(char **simple_command, t_data **simple_command_list, int flag);
-void	check_flag(char **simple_command, int flag);
-int	files_lim_len(char **simple_command);
-t_data *oranize_simple_command_list(t_data **simple_command_list);
-void	look_for_heredoc(t_data *backup, t_data **new_list);
-void	look_for_rip(t_data *backup, t_data **new_list);
-void	look_for_rop(t_data *backup, t_data **new_list);
-void	look_for_cmd(t_data *backup, t_data **new_list);
-t_data	*join_cmds(t_data **new_list_cmd);
 #endif
