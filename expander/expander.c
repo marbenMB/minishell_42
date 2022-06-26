@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/26 04:48:22 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/26 05:11:44 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,17 @@ int words_counter(char *cmd)
 	while(*cmd)
 	{
 		quotes_checker(*cmd, &quote_type);
-		if(*cmd && quote_type == 0)
+		if(quote_type == 0)
 			// function to count word witout quotes
 			count_words_witout_quotes(&cmd, &count);
 			// function to count word with quotes
-		else if(*cmd && quote_type != 0)
+		if(quote_type != 0)
 			count_words_with_quotes(&cmd, &count, &quote_type);
-		// else
-		// 	cmd++;
+		if(quote_type == 0 && *cmd == ' ')
+		{
+			while(*cmd == ' ')
+				cmd++;
+		}
 	}
 	return(count);	
 }
@@ -111,10 +114,8 @@ void	count_words_witout_quotes(char **cmd, int *count)
 			break;
 		(*cmd)++;
 	}
-	if(**cmd == ' ')
+	if(**cmd == ' ' || **cmd == '\0')
 		(*count)++;
-	while(**cmd == ' ')
-		(*cmd)++;
 }
 //---------------------------------------------------------- count words inside quotes
 void	count_words_with_quotes(char **cmd, int *count, char *quote_type)
@@ -125,10 +126,6 @@ void	count_words_with_quotes(char **cmd, int *count, char *quote_type)
 		if(**cmd == *quote_type)
 			break;
 	}
-	(*count)++;
 	if(**cmd == ' ')
 		(*count)++;
-	while(**cmd == ' ')
-		(*cmd)++;
-	
 }
