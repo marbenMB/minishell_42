@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/25 18:44:15 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/26 04:48:22 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void	expander(t_shell *data_shell)
 		}
 		backup = backup->next;
 	}
-	// backup = data_shell->data;
-	// while(backup)
-	// {
-	// 	if(backup->token == 8)
-	// 		// function to put data in 2D array 
-	// 	backup = backup->next;
-	// }
+	backup = data_shell->data;
+	while(backup)
+	{
+		if(backup->token == 8)
+			// function to put data in 2D array 
+			command_filler(backup->str, data_shell->cmd);
+		backup = backup->next;
+	}
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -65,12 +66,69 @@ char	*expande_str_data(char *str, t_env *env, int token)
 	}
 	return (new);
 }
-//-------------------------------------------------------------------
-// void	command_filler(char *cmd, t_cmd *cmds_table)
-// {
-// 	// count the number of words I have in the table 
-// 	// alloc for those words
-// 	// fill table of 2d array with those words
-// 	// expande the 2d array table
-// 	// add  the table to my list of tables	
-// }
+////////////////////////////////////////////////////////////////////////////new 
+void	command_filler(char *cmd, t_cmd *cmds_table)
+{
+	cmds_table = NULL;
+	int words_number;
+	
+	words_number = words_counter(cmd);
+	printf("\n%d\n", words_number);
+	// count the number of words I have in the table 
+	// alloc for those words
+	// fill table of 2d array with those words
+	// expande the 2d array table
+	// add  the table to my list of tables	
+}
+//------------------------------------------
+int words_counter(char *cmd)
+{
+	int count;
+	char quote_type;
+
+	quote_type = 0;
+	count = 0;
+	while(*cmd)
+	{
+		quotes_checker(*cmd, &quote_type);
+		if(*cmd && quote_type == 0)
+			// function to count word witout quotes
+			count_words_witout_quotes(&cmd, &count);
+			// function to count word with quotes
+		else if(*cmd && quote_type != 0)
+			count_words_with_quotes(&cmd, &count, &quote_type);
+		// else
+		// 	cmd++;
+	}
+	return(count);	
+}
+//---------------------------------------------------------- count words inside quotes
+void	count_words_witout_quotes(char **cmd, int *count)
+{
+	while(**cmd)
+	{
+		if(**cmd == ' ')
+			break;
+		(*cmd)++;
+	}
+	if(**cmd == ' ')
+		(*count)++;
+	while(**cmd == ' ')
+		(*cmd)++;
+}
+//---------------------------------------------------------- count words inside quotes
+void	count_words_with_quotes(char **cmd, int *count, char *quote_type)
+{
+	while(**cmd)
+	{
+		(*cmd)++;
+		if(**cmd == *quote_type)
+			break;
+	}
+	(*count)++;
+	if(**cmd == ' ')
+		(*count)++;
+	while(**cmd == ' ')
+		(*cmd)++;
+	
+}

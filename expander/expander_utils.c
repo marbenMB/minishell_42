@@ -6,13 +6,13 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 08:05:36 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/18 06:57:40 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/25 23:16:20 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//------------------------ create  a new node in my list
+//------------------------ create  a new node in my list of env variables
 t_env	*ft_lstnew_expander(char *var, char *value)
 {
 	t_env	*element;
