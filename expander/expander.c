@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 17:51:29 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:49:57 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*expande_str_data(char *str, t_env *env, int token)
 		if(token != 4)
 		{
 			if(new[i] == '$' && quote_type != '\'')
-				i = dollar_var(&new, env);		
+				i = dollar_var(&new, env);
 		}
 		i++;
 	}

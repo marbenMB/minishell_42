@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 06:58:44 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 16:13:18 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:03:24 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ int dollar_var(char **str, t_env *env)
 	char *before_var;
 	char *after_var;
 	char *var;
+	char *tmp;
 	int i ;
 
 	after_var = after(*str);
 	before_var = before(*str);
 	var = in_var(*str, env);
 	free(*str);
-	*str = ft_strjoin(before_var,var);
-	i = ft_strlen(*str) - 1;
-	*str = ft_strjoin(*str, after_var);
+	tmp = ft_strjoin(before_var,var);
+	i = ft_strlen(tmp) - 1;
+	*str = ft_strjoin(tmp, after_var);
 	free(before_var);
 	free(var);
+	free(tmp);
 	free(after_var);
 	return (i);
 }
