@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 14:00:47 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:27:41 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,20 @@ void	expander(t_shell *data_shell)
 			cmd_tab = command_filler(backup->str);
 		backup = backup->next;
 	}
+	//---------------------------------- print and free tab
 	// int i = 0;
 	// while(cmd_tab[i])
 	// {
 	// 	printf("|%s|\n", cmd_tab[i]);
 	// 	i++;
 	// }
+	// i = 0;
+	// while(cmd_tab[i])
+	// {
+	// 	free(cmd_tab[i]);
+	// 	i++;
+	// }
+	// free(cmd_tab);
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -88,23 +96,25 @@ char	**command_filler(char *cmd)
 	while(i < words_number)
 	{
 		cmd_table[i] = word_finder(rest);
-		// free(rest);
-		rest = rest_finder(rest);
+		rest = rest_finder(&rest);
 		i++;
 	}
 	cmd_table[i] = NULL;
+	free(rest);
 	return (cmd_table);
 }
 //----------------------------------------------------------- find word
-char *word_finder(char *str)
+char *word_finder(char *string)
 {
 	int i;
 	char quote_type;
 	char *word;
+	char *str;
 	
 	
 	i = 0;
 	quote_type = 0;
+	str = ft_strdup(string);
 	while(str[i])
 	{
 		quotes_checker(str[i], &quote_type);
@@ -113,17 +123,20 @@ char *word_finder(char *str)
 		i++;
 	}
 	word = ft_substr(str, 0, i);
+	free(str);
 	return (word);
 }
 //---------------------------------------------------------------
-char *rest_finder(char *str)
+char *rest_finder(char **string)
 {
 	int i;
 	char quote_type;
+	char *rest1;
 	char *rest;
-	
+	char *str;
 	
 	i = 0;
+	str = ft_strdup(*string);
 	quote_type = 0;
 	while(str[i])
 	{
@@ -132,7 +145,10 @@ char *rest_finder(char *str)
 			break;
 		i++;
 	}
-	rest = ft_substr(str, i, ft_strlen(str));
-	rest = ft_strtrim(rest, " ");
+	rest1 = ft_substr(str, i, ft_strlen(str));
+	rest = ft_strtrim(rest1, " ");
+	free(rest1);
+	free(str);
+	free(*string);
 	return (rest);
 }
