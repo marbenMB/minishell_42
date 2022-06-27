@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/22 23:58:16 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/27 12:54:50 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ EXEC_SRC = execution/utils/proccess_buffer.c \
 			execution/builtins/ft_export.c execution/builtins/ft_pwd.c execution/builtins/ft_unset.c  
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
-		./expander/expander.c ./expander/expander_utils.c ./expander/get_env.c ./expander/expande_variable.c
+		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c
 
 SRC = $(LEX_SRC) $(EXEC_SRC)	
 

@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 09:08:40 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:00:47 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	expander(t_shell *data_shell)
 {
 	t_data *backup;
 	char *new_str;
+	char **cmd_tab;
 
 	backup = data_shell->data;
 	new_str = NULL;
@@ -34,10 +35,15 @@ void	expander(t_shell *data_shell)
 	while(backup)
 	{
 		if(backup->token == 8)
-			// function to put data in 2D array 
-			command_filler(backup->str, data_shell->cmd);
+			cmd_tab = command_filler(backup->str);
 		backup = backup->next;
 	}
+	// int i = 0;
+	// while(cmd_tab[i])
+	// {
+	// 	printf("|%s|\n", cmd_tab[i]);
+	// 	i++;
+	// }
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -66,69 +72,67 @@ char	*expande_str_data(char *str, t_env *env, int token)
 	}
 	return (new);
 }
-////////////////////////////////////////////////////////////////////////////new 
-void	command_filler(char *cmd, t_cmd *cmds_table)
+//////////////////////////////////////////////////////////////////////////////////////NEW
+//-------------------------- return 2D tan of cmd and its flags
+char	**command_filler(char *cmd)
 {
-	cmds_table = NULL;
-	int words_number;
+	int		words_number;
+	char	**cmd_table;
+	char	*rest;
+	int i;
 	
+	i = 0;
 	words_number = words_counter(cmd);
-	printf("\n%d\n", words_number);
-	// count the number of words I have in the table 
-	// alloc for those words
-	// fill table of 2d array with those words
-	// expande the 2d array table
-	// add  the table to my list of tables	
+	cmd_table = (char **)malloc(words_number * sizeof(char *) + 1);
+	rest = ft_strdup(cmd);
+	while(i < words_number)
+	{
+		cmd_table[i] = word_finder(rest);
+		// free(rest);
+		rest = rest_finder(rest);
+		i++;
+	}
+	cmd_table[i] = NULL;
+	return (cmd_table);
 }
-//------------------------------------------
-int words_counter(char *cmd)
+//----------------------------------------------------------- find word
+char *word_finder(char *str)
 {
-	int count;
+	int i;
 	char quote_type;
-
+	char *word;
+	
+	
+	i = 0;
 	quote_type = 0;
-	count = 0;
-	while(*cmd)
+	while(str[i])
 	{
-		quotes_checker(*cmd, &quote_type);
-		if(quote_type == 0)
-		// function to count word witout quotes
-			count_words_witout_quotes(&cmd, &count);
-		// function to count word with quotes
-		else if(quote_type != 0)
-			count_words_with_quotes(&cmd, &count, &quote_type);
-		// skip space
-		if(quote_type == 0 && *cmd == ' ')
-		{
-			while(*cmd == ' ')
-				cmd++;
-		}
-	}
-	return(count);	
-}
-//---------------------------------------------------------- count words inside quotes
-void	count_words_witout_quotes(char **cmd, int *count)
-{
-	while(**cmd)
-	{
-		(*cmd)++;
-		if(**cmd == ' ' || **cmd == '\'' || **cmd == '"')
+		quotes_checker(str[i], &quote_type);
+		if(str[i] == ' ' && quote_type == 0)
 			break;
+		i++;
 	}
-	if(**cmd == ' ' || **cmd == '\0')
-		(*count)++;
+	word = ft_substr(str, 0, i);
+	return (word);
 }
-//---------------------------------------------------------- count words inside quotes
-void	count_words_with_quotes(char **cmd, int *count, char *quote_type)
+//---------------------------------------------------------------
+char *rest_finder(char *str)
 {
-	while(**cmd)
+	int i;
+	char quote_type;
+	char *rest;
+	
+	
+	i = 0;
+	quote_type = 0;
+	while(str[i])
 	{
-		(*cmd)++;
-		if(**cmd == *quote_type)
+		quotes_checker(str[i], &quote_type);
+		if(str[i] == ' ' && quote_type == 0)
 			break;
+		i++;
 	}
-	quotes_checker(**cmd, quote_type);
-	(*cmd)++;
-	if((**cmd == ' ' || **cmd == '\0') && *quote_type == 0)
-		(*count)++;
+	rest = ft_substr(str, i, ft_strlen(str));
+	rest = ft_strtrim(rest, " ");
+	return (rest);
 }

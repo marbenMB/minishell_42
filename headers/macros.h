@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:25 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 06:40:51 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 12:56:09 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,8 @@
 //expande data in list of cmds
 // norme
 // ngol ali check lexer part
+//--------------------------------------------
+	// count the number of words I have in the table 
+	// alloc for those words
+	// fill table of 2d array with those words
+	// expande the 2d array table
