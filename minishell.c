@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 13:57:53 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:58:39 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,22 @@ int	main(int ac, char **av, char **env)
 		expander(&shell);
 		// while(shell.data)
 		// {
-		// 	printf("\n-----------------\n");
+		// 	int i = 0;
+		// 	printf("\n----------------------------------------------node \n");
 		// 	printf("|%s|\n %d", shell.data->str, shell.data->token);
+		// 	if(shell.data->token == 8)
+		// 	{
+		// 		printf("\n............................table of cmds\n");
+		// 		while(shell.cmd->cmd_flags[i])
+		// 		{
+		// 			printf("|%s|\n", shell.cmd->cmd_flags[i]);
+		// 			i++;	
+		// 		}			
+		// 	}
 		// 	shell.data = shell.data->next;
 		// }
 		free_data(&(shell.data));
+		free_data3(&(shell.cmd));
 	}
 	free_data2(&(shell.env));
 	return (0);

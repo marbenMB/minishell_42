@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 15:30:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:06:21 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,10 @@ void	count_words_witout_quotes(char **cmd, int *count);
 void	count_words_with_quotes(char **cmd, int *count, char *quote_type);
 char    *word_finder(char *string, t_env *env);
 char    *rest_finder(char **string);
+	void free_twod_tab(char **tab);
+  //---------------------------- temp 
+t_cmd   *ft_lstnew_cmd(char **cmd_flags);
+void	ft_lstadd_back_cmd(t_cmd **lst, t_cmd *new);
+t_cmd	*ft_lstlast_cmd(t_cmd **lst);
+void	free_data3(t_cmd **cmd);
 #endif

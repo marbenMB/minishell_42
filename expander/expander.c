@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 15:37:01 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:51:29 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,14 @@ void	expander(t_shell *data_shell)
 			free(backup->str);
 			backup->str = new_str;
 		}
-		backup = backup->next;
-	}
-	backup = data_shell->data;
-	while(backup)
-	{
-		if(backup->token == 8)
+		else if(backup->token == 8)
+		{
 			cmd_tab = command_filler(backup->str, data_shell->env);
+			ft_lstadd_back_cmd(&data_shell->cmd, ft_lstnew_cmd(cmd_tab));
+			free_twod_tab(cmd_tab);
+		}
 		backup = backup->next;
 	}
-	//---------------------------------- print and free tab
-	int i = 0;
-	while(cmd_tab[i])
-	{
-		printf("|%s|\n", cmd_tab[i]);
-		i++;
-	}
-	i = 0;
-	while(cmd_tab[i])
-	{
-		free(cmd_tab[i]);
-		i++;
-	}
-	free(cmd_tab);
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -125,8 +110,8 @@ char *word_finder(char *string, t_env *env)
 	}
 	word = ft_substr(str, 0, i);
 	word2 = expande_str_data(word, env, 18);
-	free(str);
 	free(word);
+	free(str);
 	return (word2);
 }
 //---------------------------------------------------------------
