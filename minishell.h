@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 17:06:21 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 19:40:38 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int	save_operator_data(char **simple_command, t_data **simple_command_list, int 
 void	check_flag(char **simple_command, int flag);
 int	files_lim_len(char **simple_command);
 t_data *oranize_simple_command_list(t_data **simple_command_list);
-void	look_for_operator(t_data *backup, t_data **new_list);
+void	look_for_heredoc(t_data *backup, t_data **new_list);
+void	look_for_rip(t_data *backup, t_data **new_list);
+void	look_for_rop(t_data *backup, t_data **new_list);
 void	look_for_cmd(t_data *backup, t_data **new_list);
 t_data	*join_cmds(t_data **new_list_cmd);
 //*************************************************** expander
