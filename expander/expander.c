@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 14:27:41 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:37:01 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ void	expander(t_shell *data_shell)
 	while(backup)
 	{
 		if(backup->token == 8)
-			cmd_tab = command_filler(backup->str);
+			cmd_tab = command_filler(backup->str, data_shell->env);
 		backup = backup->next;
 	}
 	//---------------------------------- print and free tab
-	// int i = 0;
-	// while(cmd_tab[i])
-	// {
-	// 	printf("|%s|\n", cmd_tab[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while(cmd_tab[i])
-	// {
-	// 	free(cmd_tab[i]);
-	// 	i++;
-	// }
-	// free(cmd_tab);
+	int i = 0;
+	while(cmd_tab[i])
+	{
+		printf("|%s|\n", cmd_tab[i]);
+		i++;
+	}
+	i = 0;
+	while(cmd_tab[i])
+	{
+		free(cmd_tab[i]);
+		i++;
+	}
+	free(cmd_tab);
 }
 //------------------------------------------------------
 char	*expande_str_data(char *str, t_env *env, int token)
@@ -82,7 +82,7 @@ char	*expande_str_data(char *str, t_env *env, int token)
 }
 //////////////////////////////////////////////////////////////////////////////////////NEW
 //-------------------------- return 2D tan of cmd and its flags
-char	**command_filler(char *cmd)
+char	**command_filler(char *cmd, t_env *env)
 {
 	int		words_number;
 	char	**cmd_table;
@@ -95,7 +95,7 @@ char	**command_filler(char *cmd)
 	rest = ft_strdup(cmd);
 	while(i < words_number)
 	{
-		cmd_table[i] = word_finder(rest);
+		cmd_table[i] = word_finder(rest, env);
 		rest = rest_finder(&rest);
 		i++;
 	}
@@ -104,11 +104,12 @@ char	**command_filler(char *cmd)
 	return (cmd_table);
 }
 //----------------------------------------------------------- find word
-char *word_finder(char *string)
+char *word_finder(char *string, t_env *env)
 {
 	int i;
 	char quote_type;
 	char *word;
+	char *word2;
 	char *str;
 	
 	
@@ -123,8 +124,10 @@ char *word_finder(char *string)
 		i++;
 	}
 	word = ft_substr(str, 0, i);
+	word2 = expande_str_data(word, env, 18);
 	free(str);
-	return (word);
+	free(word);
+	return (word2);
 }
 //---------------------------------------------------------------
 char *rest_finder(char **string)

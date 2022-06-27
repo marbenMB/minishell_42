@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 14:24:18 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:30:58 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ char	*before(char *str);
 char	*after(char *str);
 char 	*in_var(char *str, t_env *env);
 //,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, new things
-char	**command_filler(char *cmd);
+char	**command_filler(char *cmd, t_env *env);
 int     words_counter(char *cmd);
 void	count_words_witout_quotes(char **cmd, int *count);
 void	count_words_with_quotes(char **cmd, int *count, char *quote_type);
-char    *word_finder(char *string);
+char    *word_finder(char *string, t_env *env);
 char    *rest_finder(char **string);
 #endif
