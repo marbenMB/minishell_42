@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:58:20 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 19:40:38 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:03:51 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	look_for_rip(t_data *backup, t_data **new_list);
 void	look_for_rop(t_data *backup, t_data **new_list);
 void	look_for_cmd(t_data *backup, t_data **new_list);
 t_data	*join_cmds(t_data **new_list_cmd);
+char *join_cmds_string(t_data *list);
 //*************************************************** expander
 //--------------------------- utils
 t_env	*ft_lstnew_expander(char *var, char *value);

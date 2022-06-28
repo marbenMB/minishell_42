@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:34:54 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/23 23:54:37 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:11:02 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_data	*ft_lstnew_lexer(char *data, int token)
 	element = (t_data *)malloc(sizeof(t_data));
 	if (!element)
 		return (0);
-	if(data == NULL)
+	if (data == NULL)
 		element->str = NULL;
-	else if(data != NULL)
+	else if (data != NULL)
 		element->str = ft_strdup(data);
 	element->token = token;
 	element->next = NULL;

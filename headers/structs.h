@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 13:03:28 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 16:48:55 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:10:20 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct env
 //------------------------------- cmd data
 typedef struct cmd
 {
-	struct cmd *prev;
-	char **cmd_flags;
-	struct cmd *next;
+	struct cmd	*prev;
+	char		**cmd_flags;
+	struct cmd	*next;
 }t_cmd;
 //--------------------------- shell data
 typedef struct shell
@@ -42,4 +42,4 @@ typedef struct shell
 	t_env	*env;
 	t_cmd	*cmd;
 }t_shell;
-# endif
+#	endif

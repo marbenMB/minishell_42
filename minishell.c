@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 19:28:24 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:01:02 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,25 @@ int	main(int ac, char **av, char **env)
 		}
 		expander(&shell);
 		//----------------------------- print data
-		printf("\n........................................................list of data\n");
-		while(shell.data)
-		{
-			printf("[%s]\t%d\n", shell.data->str, shell.data->token);
-			shell.data = shell.data->next;
-		}
-		printf("\n........................................................table of cmds\n");
-		while(shell.cmd)
-		{
-			int i = 0;
-			while(shell.cmd->cmd_flags[i])
-			{
-				printf("(%s)\t", shell.cmd->cmd_flags[i]);
-				i++;	
-			}
-			printf("\n");
-			shell.cmd = shell.cmd->next;
+		// printf("\n........................................................list of data\n");
+		// while(shell.data)
+		// {
+		// 	printf("[%s]\t%d\n", shell.data->str, shell.data->token);
+		// 	shell.data = shell.data->next;
+		// }
+		// printf("\n........................................................table of cmds\n");
+		// while(shell.cmd)
+		// {
+		// 	int i = 0;
+		// 	while(shell.cmd->cmd_flags[i])
+		// 	{
+		// 		printf("(%s)\t", shell.cmd->cmd_flags[i]);
+		// 		i++;	
+		// 	}
+		// 	printf("\n");
+		// 	shell.cmd = shell.cmd->next;
 			
-		}
+		// }
 		//----------------------------------------- print data 
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));

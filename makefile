@@ -6,7 +6,7 @@
 #    By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 13:58:33 by abellakr          #+#    #+#              #
-#    Updated: 2022/06/27 16:53:07 by abellakr         ###   ########.fr        #
+#    Updated: 2022/06/28 20:00:32 by abellakr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ EXEC_SRC = execution/utils/proccess_buffer.c \
 
 LEX_SRC = minishell.c ./lexer/lexer_first_part.c ./lexer/lexer_utils.c ./lexer/tools.c ./lexer/syntax_error.c ./lexer/lexer_second_part.c \
 		./expander/expander.c ./expander/expander_utils1.c ./expander/get_env.c ./expander/expande_variable.c ./expander/expander_utils2.c \
-		./expander/expander_utils3.c
+		./expander/expander_utils3.c ./lexer/lexer_third_part.c ./lexer/lexer_part_four.c
 
 SRC = $(LEX_SRC) $(EXEC_SRC)	
 
@@ -70,7 +70,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@echo  $(BPurple)"minishell by group sbaksi : done! "$(Color_Off)
 	@make -C ./libft
-	@$(CC) $(CFlAGS) $(READ_FLAGS)  $(OBJ) ./libft/libft.a -o $(NAME)
+	@$(CC) $(CFlAGS) $(READ_FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@make clean
 
 clean : 
@@ -84,3 +84,4 @@ fclean : clean
 re : fclean all
 
 .PHONY : clean fclean bonus re
+# -static-libsan -fsanitize=address check aborting flags 
