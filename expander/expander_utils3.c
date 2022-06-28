@@ -6,25 +6,25 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 16:46:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 17:56:06 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:27:08 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 //------------------------ 
-t_cmd   *ft_lstnew_cmd(char **cmd_flags)
+t_cmd	*ft_lstnew_cmd(char **cmd_flags)
 {
 	t_cmd	*element;
 	int		len;
 
 	len = 0;
 	element = (t_cmd *)malloc(sizeof(t_cmd));
-	while(cmd_flags[len])
+	while (cmd_flags[len])
 		len++;
 	element->cmd_flags = (char **)malloc(sizeof(char *) * len + 1);
 	len = 0;
-	while(cmd_flags[len])
+	while (cmd_flags[len])
 	{
 		element->cmd_flags[len] = ft_strdup(cmd_flags[len]);
 		len++;

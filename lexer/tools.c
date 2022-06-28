@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 08:35:24 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/27 16:57:22 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 22:28:48 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_data(t_data **data)
 		}
 	}
 }
+
 //-------------------------------------------------- function free data
 void	free_data2(t_env **env)
 {
@@ -47,6 +48,7 @@ void	free_data2(t_env **env)
 		}
 	}
 }
+
 //-------------------------------------------------- function free cmd 
 void	free_data3(t_cmd **cmd)
 {
@@ -64,4 +66,3 @@ void	free_data3(t_cmd **cmd)
 		}
 	}
 }
-

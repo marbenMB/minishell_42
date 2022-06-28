@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_utils1.c                                   :+:      :+:    :+:   */
+/*   expander_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 08:05:36 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/25 23:16:20 by abellakr         ###   ########.fr       */
+/*   Created: 2022/06/28 22:39:27 by abellakr          #+#    #+#             */
+/*   Updated: 2022/06/28 22:40:44 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,34 @@ t_env	*ft_lstlast_expander(t_env **lst)
 		backup = backup->next;
 	return (backup);
 }
-//------------------------------------------------------ find the correct value to the env variable
+
+//--------------------------- find the correct value to the env variable
 char	*var_finder(char *var, t_env *env)
 {
-	t_env *backup;
-	char *correct_value;
+	t_env	*backup;
+	char	*correct_value;
 
 	backup = env;
 	correct_value = NULL;
-	while(backup)
+	while (backup)
 	{
-		if(ft_strcmp(var, backup->var) == 0)
+		if (ft_strcmp(var, backup->var) == 0)
 		{
-			correct_value =  ft_strdup(backup->value);
-			break;
+			correct_value = ft_strdup(backup->value);
+			break ;
 		}
 		backup = backup->next;
 	}
-	return(correct_value);
+	return (correct_value);
 }
-//------------------------------------------------------------- check quote type 
+
+//------------------------ check quote type 
 void	quotes_checker(char quote, char *quote_type)
 {
-	if((quote == '"' && *quote_type == '"') || (quote == '\'' && *quote_type == '\''))
+	if ((quote == '"' && *quote_type == '"') || \
+	(quote == '\'' && *quote_type == '\''))
 		*quote_type = 0;
-	else if((quote == '"' && *quote_type == 0) || (quote == '\'' && *quote_type == 0))
-		*quote_type = quote;	
+	else if ((quote == '"' && *quote_type == 0) || \
+	(quote == '\'' && *quote_type == 0))
+		*quote_type = quote;
 }

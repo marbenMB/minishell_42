@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 13:19:45 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/24 04:41:49 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/28 23:42:18 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (s1 == NULL && s2 != NULL)
 		return (ft_strdup(s2));
-	else if(s1 != NULL && s2 == NULL)
+	else if (s1 != NULL && s2 == NULL)
 		return (ft_strdup(s1));
-	else if(s1 == NULL && s2 == NULL)
-		return(NULL);
+	else if (s1 == NULL && s2 == NULL)
+		return (NULL);
 	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	p_str = str;
 	if (str)
