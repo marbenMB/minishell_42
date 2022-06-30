@@ -6,7 +6,7 @@
 /*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 13:13:17 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 23:30:58 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:32:05 by abellakr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*word_finder(char *string, t_env *env)
 	char	quote_type;
 	char	*word;
 	char	*word2;
-	char	str;
+	char	*str;
 
 	i = 0;
 	quote_type = 0;
