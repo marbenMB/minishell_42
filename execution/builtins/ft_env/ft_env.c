@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 10:55:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/29 14:24:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/25 20:41:48 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/25 20:41:51 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../headers/execution.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_env(t_shell *shell)
 {
-	void	*p;
+	t_env	*head;
 
-	p = malloc(count * size);
-	if (p)
+	if (shell->cmd->cmd_flags[1] != NULL)
 	{
-		ft_memset(p, 0, (size * count));
-		return (p);
+		error_cmd_arg(&shell->env, "env", shell->cmd->cmd_flags[1], NSFD);
+		return (1);
 	}
+	head = shell->env->next;
+	while (head)
+	{
+		if (head->if_in_env == 1)
+			printf("%s=%s\n", head->var, head->value);
+		head = head->next;
+	}
+	ft_status(&shell->env, SUCC_STAT);
 	return (0);
 }

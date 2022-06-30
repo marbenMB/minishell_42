@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 10:55:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/29 14:24:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/28 13:45:02 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/28 13:53:59 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/execution.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	check_in_env(t_shell *shell)
 {
-	void	*p;
+	t_env	*back_up;
 
-	p = malloc(count * size);
-	if (p)
+	shell->env->if_in_env = -1;
+	back_up = shell->env->next;
+	if (back_up)
 	{
-		ft_memset(p, 0, (size * count));
-		return (p);
+		while (back_up)
+		{
+			back_up->if_in_env = 1;
+			back_up = back_up->next;
+		}
 	}
-	return (0);
 }

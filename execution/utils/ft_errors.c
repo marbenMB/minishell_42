@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 10:55:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/29 14:24:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/28 15:17:33 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/29 12:52:13 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/execution.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	error_cmd_arg(t_env **env, char *cmd, char *arg, char *msg)
 {
-	void	*p;
-
-	p = malloc(count * size);
-	if (p)
-	{
-		ft_memset(p, 0, (size * count));
-		return (p);
-	}
-	return (0);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(" : ", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd(" : ", 2);
+	ft_putendl_fd(msg, 2);
+	ft_status(env, FAIL_STAT);
 }

@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 10:55:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/29 14:24:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/28 13:44:43 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/28 13:45:41 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*p;
-
-	p = malloc(count * size);
-	if (p)
-	{
-		ft_memset(p, 0, (size * count));
-		return (p);
-	}
-	return (0);
-}
+#include "../../headers/execution.h"
