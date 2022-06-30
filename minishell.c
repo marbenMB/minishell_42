@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abellakr <abellakr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:59:05 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/28 22:01:02 by abellakr         ###   ########.fr       */
+/*   Updated: 2022/06/30 15:27:10 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	main(int ac, char **av, char **env)
 	ac = 0;
 	av = NULL;
 	shell.env = get_env(env);
+	check_in_env(&shell);
 	while (1)
 	{
-		buffer = readline ("\nminishell$ ");
+		buffer = readline ("minishell$ ");
 		add_history(buffer);
 		if (ft_strcmp(buffer, "exit") == 0)
 			exit(0);
@@ -58,8 +59,12 @@ int	main(int ac, char **av, char **env)
 			
 		// }
 		//----------------------------------------- print data 
+		proccess_buff(&shell);
 		free_data(&(shell.data));
 		free_data3(&(shell.cmd));
+		printf("\033[0;33m----------------------------\n");
+		system("leaks minishell");
+		printf("\n----------------------------\n\033[0m");
 	}
 	free_data2(&(shell.env));
 	return (0);

@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbenbajj <mbenbajj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 10:55:03 by abellakr          #+#    #+#             */
-/*   Updated: 2022/06/29 14:24:00 by mbenbajj         ###   ########.fr       */
+/*   Created: 2022/06/25 20:44:09 by mbenbajj          #+#    #+#             */
+/*   Updated: 2022/06/29 16:10:00 by mbenbajj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/execution.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_status(t_env **env, char *stats)
 {
-	void	*p;
-
-	p = malloc(count * size);
-	if (p)
+	if ((*env)->if_in_env == -1)
 	{
-		ft_memset(p, 0, (size * count));
-		return (p);
+		free((*env)->value);
+		(*env)->value = ft_strdup(stats);
 	}
-	return (0);
+}
+
+t_env	*get_env_var(t_env **env, char *var_name)
+{
+	t_env	*head;
+
+	head = (*env)->next;
+	while (ft_strcmp((head->var), var_name))
+		head = head->next;
+	return (head);
 }
